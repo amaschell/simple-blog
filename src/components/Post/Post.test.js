@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BlogFooter from '../components/BlogFooter';
+
+import Post from './Post';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<BlogFooter />, div);
+    ReactDOM.render(<Post />, div);
 });

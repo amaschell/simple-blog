@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import BlogHeader from '../components/BlogHeader';
+
+import Header from './Header';
 
 it('renders without crashing', () => {
     const div = document.createElement('div');
-    ReactDOM.render(<BlogHeader />, div);
+    ReactDOM.render(<Header />, div);
 });
