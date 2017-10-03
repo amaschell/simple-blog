@@ -9,6 +9,7 @@ const Header = () => (
         <nav className="header__navbar">
             <ul className="navbar__list">
                 <NavigationItem name="Home" url="home"/>
+                <NavigationItem name="Posts" url="posts"/>
                 <NavigationItem name="About" url="about"/>
                 <NavigationItem name="Contact" url="contact"/>
             </ul>

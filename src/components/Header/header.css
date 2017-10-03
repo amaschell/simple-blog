@@ -1,30 +1,129 @@
 .header {
-    border: 3px solid darkgreen;
-    border-radius: 10px;
+    border-bottom: 3px solid darkgreen;
+    border-top: 3px solid darkgreen;
 }
 
-.header__navbar {}
+.header__navbar {
+    font-size: 1em;
+}
 
 .header__title {
     font-weight: bold;
     color: darkgreen;
-    font-size: 3em;
     text-align: center;
-}
-
-.navbar__item {
-    display: inline-block;
-    margin-right: 2em;
-    margin-left: 2em;
 }
 
 .navbar__link {
-    color: darkgray;
+    color: #818a83;
     font-weight: bold;
-    font-size: 1.2em;
-    text-decoration: none;
+    text-decoration: underline;
 }
+
 
 .navbar__list {
     text-align: center;
+    -webkit-padding-start: 0;
+}
+
+
+@media (max-width: 300px) {
+    .header {
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+
+    .header__title {
+        font-size: 1.5em;
+    }
+
+    .navbar__item {
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    .navbar__link {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 301px) and (max-width: 600px) {
+    .header {
+        margin-top: 1em;
+        margin-bottom: 2em;
+    }
+
+    .header__navbar {
+        margin-top: 2em;
+    }
+
+    .header__title {
+        font-size: 2em;
+    }
+
+    .navbar__item {
+        display: inline-block;
+        margin-bottom: 1em;
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .navbar__link {
+        font-size: 1.2em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 899px) {
+    .header {
+        margin-top: 2em;
+        margin-bottom: 2em;
+        margin-left: 3%;
+        margin-right: 3%;
+    }
+
+    .header__navbar {
+        margin-top: 2.5em;
+    }
+
+    .header__title {
+        font-size: 2.5em;
+    }
+
+    .navbar__item {
+        display: inline-block;
+        margin-bottom: 1em;
+        margin-left: 1.5em;
+        margin-right: 1.5em;
+    }
+
+    .navbar__link {
+        font-size: 1.3em;
+    }
+}
+
+@media (min-width: 900px) {
+    .header {
+        margin-top: 2em;
+        margin-bottom: 3em;
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+
+    .header__navbar {
+        margin-top: 3em;
+    }
+
+    .header__title {
+        font-size: 3em;
+    }
+
+    .navbar__item {
+        display: inline-block;
+        margin-bottom: 1em;
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    .navbar__link {
+        font-size: 1.3em;
+    }
 }
