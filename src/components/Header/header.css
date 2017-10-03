@@ -1,1 +1,30 @@
-.header {}
+.header {
+    border: 3px solid darkgreen;
+    border-radius: 10px;
+}
+
+.header__navbar {}
+
+.header__title {
+    font-weight: bold;
+    color: darkgreen;
+    font-size: 3em;
+    text-align: center;
+}
+
+.navbar__item {
+    display: inline-block;
+    margin-right: 2em;
+    margin-left: 2em;
+}
+
+.navbar__link {
+    color: darkgray;
+    font-weight: bold;
+    font-size: 1.2em;
+    text-decoration: none;
+}
+
+.navbar__list {
+    text-align: center;
+}
