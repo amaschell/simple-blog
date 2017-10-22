@@ -4,7 +4,7 @@ import './footer.css';
 
 const Footer = () => (
     <footer className="footer">
-        This is the simple blog's footer.
+        <p className="footer__content">Copyright &copy; 2017</p>
     </footer>
 );
 

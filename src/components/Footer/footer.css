@@ -1,1 +1,9 @@
-.footer {}
+.footer {
+    clear: both;
+    text-align: center;
+    padding-top: 2em;
+}
+
+.footer__content {
+
+}
