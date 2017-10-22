@@ -1,18 +1,19 @@
 import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom'
 
 import Header from '../Header/Header';
-import Posts from '../Posts/Posts';
-import Post from '../Post/Post';
+import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 import './app.css';
 
 const App = () => (
-    <div className="app">
-        <Header />
-        <Posts />
-        <Post />
-        <Footer />
-    </div>
+    <Router>
+        <div className="app">
+            <Header />
+            <Main />
+            <Footer />
+        </div>
+    </Router>
 );
 
 export default App;

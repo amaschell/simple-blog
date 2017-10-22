@@ -1,5 +1,4 @@
 import React from 'react';
-import PostsListEntry from './PostsListEntry';
 
 import '../Posts/posts.css';
 
@@ -18,7 +17,7 @@ class Posts extends React.Component {
             <ul className="posts__list">
                 {
                     posts.map(function(post, i) {
-                        return <PostsListEntry key={post.id} post={post}/>
+                        return <div key={post.id}>{post.title}</div>
                     })
                 }
             </ul>
