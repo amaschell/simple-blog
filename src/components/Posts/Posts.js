@@ -1,6 +1,7 @@
 import React from 'react';
 
 import posts from './posts.json';
+import AbstractEntry from './AbstractEntry';
 import '../Posts/posts.css';
 
 class Posts extends React.Component {
@@ -17,7 +18,7 @@ class Posts extends React.Component {
             <ul className="posts__list">
                 {
                     this.state.posts.map(function(post, i) {
-                        return <div key={post.id}>{post.title}</div>
+                        return <AbstractEntry key={post.id} post={post} />
                     })
                 }
             </ul>

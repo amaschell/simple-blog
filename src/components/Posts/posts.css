@@ -1,1 +1,30 @@
+.abstractEntry {
+    margin-bottom: 3em;
+}
+
+.abstractEntry__abstract {
+    color: black;
+}
+
+.abstractEntry__author {
+    color: orange;
+    font-weight: bold;
+}
+
+.abstractEntry__date {
+    font-style: italic;
+    color: darkgray;
+    margin-right: 1em;
+}
+
+.abstractEntry__link {
+    color: black;
+}
+
+.abstractEntry__title {
+    margin-bottom: 0.5em;
+}
+
 .posts {}
+
+.posts__list {}
