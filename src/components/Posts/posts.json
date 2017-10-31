@@ -4,6 +4,7 @@
     "date": "12.12.2012",
     "title": "Blogs have always been overrated!",
     "author": "Jason McJason",
+    "url": "blogs-are-overrated",
     "abstract": "This post criticizes edgy teens that still feel obliged to write edgy blog posts.",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
@@ -12,6 +13,7 @@
     "date": "28.12.2004",
     "title": "Why did Santa Claus hack my blog?",
     "author": "Jason McJason",
+    "url": "santa-claus-hack",
     "abstract": "In this post I talk about my insecurities and paranoia that evolved after I got hacked by a imagined entity.",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
@@ -20,6 +22,7 @@
     "date": "24.12.2004",
     "title": "Back on my sleigh ridin' around the hood",
     "author": "Santa Claus",
+    "url": "santa-takes-over",
     "abstract": "Kids, teens and twens, it's me, ya boi Santa. Fabulous as ever and ready to go nuts.",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
@@ -28,6 +31,7 @@
     "date": "11.11.2000",
     "title": "Obvious trolls are obvious",
     "author": "Jason McJason",
+    "url": "obvious-trolls",
     "abstract": "Trolls are the cancer of the internet. Why you should avoid them as often as possible.",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   },
@@ -36,6 +40,7 @@
     "date": "01.06.1998",
     "title": "The internet is freaking amazing!",
     "author": "Jason McJason",
+    "url": "the-internet-is-amazing",
     "abstract": "This post deals with my excitement for this thing called world wide web.",
     "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
   }

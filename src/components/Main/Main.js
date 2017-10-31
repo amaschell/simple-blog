@@ -1,10 +1,10 @@
 import React from 'react';
 import {Route} from 'react-router-dom'
 
-import Home from '../Home/Home';
 import About from '../About/About';
-import Posts from '../Posts/Posts';
 import Contact from '../Contact/Contact';
+import Home from '../Home/Home';
+import Posts from '../Posts/Posts';
 import './main.css';
 
 const Main = () => (

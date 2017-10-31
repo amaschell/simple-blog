@@ -28,3 +28,10 @@
 .posts {}
 
 .posts__list {}
+
+.posts__mainTitle {
+    font-size: 2em;
+    font-weight: bold;
+    color: darkgreen;
+    margin-left: 40px;
+}

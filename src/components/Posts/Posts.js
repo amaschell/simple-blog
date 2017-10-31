@@ -15,6 +15,7 @@ class Posts extends React.Component {
 
     render() {
         return <nav className="posts">
+            <h1 className="posts__mainTitle">All posts</h1>
             <ul className="posts__list">
                 {
                     this.state.posts.map(function(post, i) {
