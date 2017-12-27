@@ -10,8 +10,6 @@ const App = () => (
     <Router>
         <div className="app">
             <Header />
-            {/* TODO: Some tests fail as links and routes should not be
-            located outside of the router. But such a modularization makes sense here */}
             <Main />
             <Footer />
         </div>

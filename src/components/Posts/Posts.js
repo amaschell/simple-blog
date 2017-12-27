@@ -9,7 +9,8 @@ class Posts extends React.Component {
         super(props);
 
         this.state = {
-            posts: posts
+            posts: posts,
+            theMatch: props.match
         };
     }
 
@@ -18,7 +19,7 @@ class Posts extends React.Component {
             <h1 className="posts__mainTitle">All posts</h1>
             <ul className="posts__list">
                 {
-                    this.state.posts.map(function(post, i) {
+                    this.state.posts.map( (post) => {
                         return <AbstractEntry key={post.id} post={post} />
                     })
                 }

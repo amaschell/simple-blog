@@ -4,13 +4,12 @@ import {Link} from 'react-router-dom'
 import './posts.css';
 
 const AbstractEntry = (props) => {
-    const {abstract, author, date, title} = props.post;
+    const {abstract, author, date, title, url} = props.post;
 
     return (
         <article className="abstractEntry">
             <h2 className="abstractEntry__title">
-                {/* TODO: How to link and display here posts/post_url? */}
-                <Link to={props.post.url} className="abstractEntry__link">
+                <Link to={`posts/${url}`} className="abstractEntry__link">
                     {title}
                 </Link>
             </h2>
