@@ -9,8 +9,7 @@ class Posts extends React.Component {
         super(props);
 
         this.state = {
-            posts: posts,
-            theMatch: props.match
+            posts: posts
         };
     }
 
