@@ -1,6 +1,8 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 import allPosts from '../Posts/posts.json';
+import Entry from './Entry';
 import UnknownPost from './UnknownPost';
 import './post.css';
 
@@ -9,7 +11,7 @@ const Post = (props) => {
     var postContent;
 
     if (post) {
-        postContent = <div>{post.title} {post.url} {post.id}</div>
+        postContent = <Entry post={post} />
     } else {
         postContent = <UnknownPost />
     }
@@ -17,6 +19,10 @@ const Post = (props) => {
 
     return (
         <main className="post">
+            <nav className="post__backNavigation">
+                <Link to="/posts" className="post__backToPostsLink">&larr; Back to posts</Link>
+            </nav>
+
             {postContent}
         </main>
     );
