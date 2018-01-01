@@ -11,6 +11,10 @@
     color: #6d7a88;
 }
 
+.footer__email {
+    color: #278a55;
+}
+
 
 @media (max-width: 600px) {
     .footer__content {

@@ -8,7 +8,7 @@ const Footer = () => (
             Copyright &copy; { new Date().getFullYear() }
             <br/>
             <br/>
-            Amadeus Schell
+            Amadeus Schell,&nbsp;<a className="footer__email" href="mailto:ama.schell7@gmail.com">ama.schell7@gmail.com</a>
         </p>
     </footer>
 );

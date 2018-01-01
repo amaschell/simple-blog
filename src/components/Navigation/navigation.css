@@ -14,7 +14,7 @@
     -webkit-padding-start: 0;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 400px) {
     .navbar__item {
         display: block;
         margin-bottom: 0.5em;
@@ -25,7 +25,7 @@
     }
 }
 
-@media (min-width: 301px) and (max-width: 600px) {
+@media (min-width: 401px) and (max-width: 600px) {
     .navbar {
         margin-top: 2em;
     }

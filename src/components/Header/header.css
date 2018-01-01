@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'HeaderFont';
+    src: url(../../fonts/Journal/journal.ttf) format('truetype');
+}
+
 .header {
     border-bottom: 3px solid darkgreen;
     border-top: 3px solid darkgreen;
@@ -5,55 +10,56 @@
 }
 
 .header__title {
+    font-family: HeaderFont, serif;
     font-weight: bold;
     color: darkgreen;
     text-align: center;
 }
 
-@media (max-width: 300px) {
+@media (max-width: 400px) {
     .header {
         margin-top: 1em;
         margin-bottom: 2em;
     }
 
     .header__title {
-        font-size: 1.5em;
+        font-size: 2.5em;
+        margin: 0.3em 0.3em 0.5em;
     }
 }
 
-@media (min-width: 301px) and (max-width: 600px) {
+@media (min-width: 401px) and (max-width: 600px) {
     .header {
         margin-top: 1em;
         margin-bottom: 2em;
     }
 
     .header__title {
-        font-size: 2em;
+        font-size: 3.5em;
+        margin: 0.3em 0.3em 0.5em;
     }
 }
 
 @media (min-width: 601px) and (max-width: 899px) {
     .header {
-        margin-top: 2em;
-        margin-bottom: 2em;
-        margin-left: 3%;
-        margin-right: 3%;
+        margin: 2em 3%;
     }
 
     .header__title {
-        font-size: 2.5em;
+        font-size: 4.5em;
+        margin-top: 0.2em;
+        margin-bottom: 0;
     }
 }
 
 @media (min-width: 900px) {
     .header {
-        margin-top: 2em;
-        margin-bottom: 3em;
-        margin-left: 5%;
-        margin-right: 5%;
+        margin: 2em 5% 3em;
     }
 
     .header__title {
-        font-size: 3em;
+        font-size: 6em;
+        margin-top: 0.2em;
+        margin-bottom: -0.1em;
     }
 }
