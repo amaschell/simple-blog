@@ -3,6 +3,25 @@
     src: url(../../fonts/open-sans/OpenSans-Regular.ttf) format('truetype');
 }
 
+@font-face {
+    font-family: 'DefaultFont';
+    src: url(../../fonts/open-sans/OpenSans-Bold.ttf) format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url(../../fonts/open-sans/OpenSans-Italic.ttf) format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url(../../fonts/open-sans/OpenSans-BoldItalic.ttf) format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 body {
     margin: 0;
     font-family: DefaultFont, sans-serif;

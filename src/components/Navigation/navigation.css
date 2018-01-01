@@ -3,7 +3,7 @@
 }
 
 .navbar__link {
-    color: #818a83;
+    color: #8191a7;
     font-weight: bold;
     text-decoration: underline;
 }
@@ -16,8 +16,10 @@
 
 @media (max-width: 400px) {
     .navbar__item {
-        display: block;
-        margin-bottom: 0.5em;
+        display: inline-block;
+        margin-bottom: 1em;
+        margin-right: 1em;
+        margin-left: 1em;
     }
 
     .navbar__link {

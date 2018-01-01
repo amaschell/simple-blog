@@ -19,7 +19,7 @@
 @media (max-width: 400px) {
     .header {
         margin-top: 1em;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
     }
 
     .header__title {
@@ -31,7 +31,7 @@
 @media (min-width: 401px) and (max-width: 600px) {
     .header {
         margin-top: 1em;
-        margin-bottom: 2em;
+        margin-bottom: 1em;
     }
 
     .header__title {

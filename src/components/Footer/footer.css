@@ -16,14 +16,20 @@
 }
 
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .footer__content {
-        font-size: 1em;
+        font-size: 0.8em;
     }
 }
 
-@media (min-width: 601px) {
+@media (min-width: 401px) and (max-width: 900px) {
     .footer__content {
-        font-size: 1.1em;
+        font-size: 0.9em;
+    }
+}
+
+@media (min-width: 901px) {
+    .footer__content {
+        font-size: 1em;
     }
 }
