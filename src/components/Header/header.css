@@ -1,6 +1,7 @@
 .header {
     border-bottom: 3px solid darkgreen;
     border-top: 3px solid darkgreen;
+    flex-shrink: 0;
 }
 
 .header__title {

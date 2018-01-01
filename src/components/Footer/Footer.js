@@ -6,6 +6,9 @@ const Footer = () => (
     <footer className="footer">
         <p className="footer__content">
             Copyright &copy; { new Date().getFullYear() }
+            <br/>
+            <br/>
+            Amadeus Schell
         </p>
     </footer>
 );
