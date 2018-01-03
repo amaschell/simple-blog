@@ -1,8 +1,258 @@
-.post {
-    float: left;
-    width: 70%;
+.post {}
+
+.post__author {
+    font-style: italic;
+}
+
+.post__authorLink {
+    color: #7996bd;
+    font-weight: bold;
 }
 
 .post__backNavigation {}
 
-.post__backToPostsLink {}
+.post__backToPostsLink {
+    color: #0c6b0c;
+    font-weight: bold;
+}
+
+.post__content {
+    white-space: pre-wrap;
+    color: #424244;
+}
+
+.post__date {
+    font-style: italic;
+    color: #9fa5b5;
+}
+
+.post__entry {}
+
+.post__title {
+    color: black;
+}
+
+.unknownPost {
+    text-align: center;
+    border: 2px solid #d2d2d2;
+    -moz-border-radius: 0.2em;
+    -webkit-border-radius: 0.2em;
+    border-radius: 0.2em;
+    background-color: #f5f5f5;
+}
+
+.unknownPost__icon {}
+
+.unknownPost__text {
+    font-weight: bold;
+    color: #ffb80c;
+}
+
+
+@media (max-width: 400px) {
+    .post {
+        margin-left: 1em;
+        margin-right: 1em;
+        margin-top: 0.7em;
+    }
+
+    .post__author {
+        font-size: 0.8em;
+    }
+
+    .post__authorLink {
+        margin-left: 0.3em;
+    }
+
+    .post__backNavigation {
+        margin-bottom: 2em;
+        font-size: 0.9em;
+    }
+
+    .post__content {
+        margin-top: 2em;
+        font-size: 0.9em;
+        margin-bottom: 4em;
+    }
+
+    .post__date {
+        font-size: 1em;
+    }
+
+    .post__title {
+        font-size: 1.4em;
+        margin-bottom: 0.5em;
+    }
+
+    .unknownPost {
+        margin-top: 2em;
+        padding: 1em 1em;
+    }
+
+    .unknownPost__icon {
+        font-size: 2em;
+        display: block;
+        margin-bottom: 0.5em;
+    }
+
+    .unknownPost__text {
+        font-size: 0.9em;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+    .post {
+        margin-left: 1.5em;
+        margin-right: 2em;
+        margin-top: 1em;
+    }
+
+    .post__author {
+        font-size: 0.9em;
+    }
+
+    .post__authorLink {
+        margin-left: 0.3em;
+    }
+
+    .post__backNavigation {
+        margin-bottom: 2em;
+        font-size: 1em;
+    }
+
+    .post__content {
+        margin-top: 2em;
+        font-size: 1em;
+        margin-bottom: 4em;
+    }
+
+    .post__date {
+        font-size: 1.1em;
+    }
+
+    .post__title {
+        font-size: 1.5em;
+        margin-bottom: 0.5em;
+    }
+
+    .unknownPost {
+        margin-top: 2em;
+        padding: 1.5em 1em;
+    }
+
+    .unknownPost__icon {
+        font-size: 2em;
+        margin-right: 0.5em;
+        vertical-align: sub;
+    }
+
+    .unknownPost__text {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .post {
+        margin-left: 2em;
+        margin-right: 3em;
+    }
+
+    .post__author {
+        font-size: 0.9em;
+    }
+
+    .post__authorLink {
+        margin-left: 0.3em;
+    }
+
+    .post__backNavigation {
+        margin-bottom: 2em;
+        font-size: 1em;
+    }
+
+    .post__content {
+        margin-top: 2em;
+        font-size: 1em;
+        margin-bottom: 4em;
+    }
+
+    .post__date {
+        font-size: 1.1em;
+        margin-top: 2em;
+    }
+
+    .post__title {
+        font-size: 1.6em;
+        margin-bottom: 0.6em;
+    }
+
+    .unknownPost {
+        margin-top: 2em;
+        padding: 2em 1em;
+    }
+
+    .unknownPost__icon {
+        font-size: 2em;
+        margin-right: 0.5em;
+        vertical-align: sub;
+    }
+
+    .unknownPost__text {
+        font-size: 1em;
+    }
+}
+
+@media (min-width: 901px) {
+    .post {
+        margin-left: 15%;
+        margin-right: 17%;
+        margin-top: -0.5em;
+    }
+
+    .post__author {
+        font-size: 1em;
+    }
+
+    .post__authorLink {
+        margin-left: 0.3em;
+    }
+
+    .post__backNavigation {
+        margin-bottom: 2.5em;
+        font-size: 1.1em;
+    }
+
+    .post__content {
+        margin-top: 2.5em;
+        font-size: 1.1em;
+        margin-bottom: 5em;
+    }
+
+    .post__date {
+        font-size: 1.3em;
+        margin-top: 2em;
+    }
+
+    .post__title {
+        font-size: 2.2em;
+        margin-bottom: 0.4em;
+        margin-top: 0.7em;
+    }
+
+    .unknownPost {
+        margin-top: 3em;
+        padding: 2em 1em;
+        margin: 0 auto;
+        max-width: 30em;
+    }
+
+    .unknownPost__icon {
+        font-size: 2.5em;
+        margin-right: 0.5em;
+        vertical-align: sub;
+    }
+
+    .unknownPost__text {
+        font-size: 1.3em;
+    }
+}

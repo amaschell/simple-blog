@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom';
 
 import allPosts from '../Posts/posts.json';
 import Entry from './Entry';
