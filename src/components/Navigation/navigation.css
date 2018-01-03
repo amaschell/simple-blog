@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'NavFont';
+    src: url(../../fonts/architects-daughter/ArchitectsDaughter.ttf) format('truetype');
+}
+
 .navbar {
     font-size: 1em;
 }
@@ -6,6 +11,7 @@
     color: #8191a7;
     font-weight: bold;
     text-decoration: underline;
+    font-family: NavFont, sans-serif;
 }
 
 
@@ -23,7 +29,7 @@
     }
 
     .navbar__link {
-        font-size: 1em;
+        font-size: 0.9em;
     }
 }
 
@@ -40,7 +46,7 @@
     }
 
     .navbar__link {
-        font-size: 1.2em;
+        font-size: 1em;
     }
 }
 
@@ -57,7 +63,7 @@
     }
 
     .navbar__link {
-        font-size: 1.3em;
+        font-size: 1.1em;
     }
 }
 

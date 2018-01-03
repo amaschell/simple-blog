@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import './post.css';
 
@@ -6,11 +7,13 @@ const Entry = (props) => {
     const {author, date, title, content} = props.post;
 
     return (
-        <div>
-            <div>{date}</div>
-            <h2>{title}</h2>
-            <div>by {author}</div>
-            <p>{content}</p>
+        <div className="post__entry">
+            <div className="post__date">{date}</div>
+            <h2 className="post__title">{title}</h2>
+            <div className="post__author">
+                by <Link to="/about" className="post__authorLink">{author}</Link>
+            </div>
+            <p className="post__content">{content}</p>
         </div>
 
     );
