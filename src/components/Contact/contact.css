@@ -1,3 +1,297 @@
 .contact {}
 
-.contact__mainTitle {}
+.contact__form {}
+
+.contact__formField {}
+
+.contact__formFieldError {
+    display: block;
+    color: #d43a3a;
+    font-style: italic;
+}
+
+.contact__formFieldError i {
+    margin-right: 0.3em;
+}
+
+.contact__formInput--big {
+    display: block;
+    border: 1px solid dimgray;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    padding: 0.5em 0.7em;
+    color: black;
+}
+
+.contact__formInput--bigAndNotValid {
+    display: block;
+    border: 1px solid #d43a3a;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    padding: 0.5em 0.7em;
+    color: black;
+}
+
+.contact__formInput--big:focus, .contact__formInput--big:active,
+.contact__formInput--bigAndNotValid:focus, .contact__formInput--bigAndNotValid:active {
+    background-color: rgba(0, 100, 0, 0.02);
+}
+
+.contact__formInput--small {
+    display: block;
+    border: 1px solid dimgray;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    padding: 0.5em 0.7em;
+    color: black;
+}
+
+.contact__formInput--smallAndNotValid {
+    display: block;
+    border: 1px solid #d43a3a;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    padding: 0.5em 0.7em;
+    color: black;
+}
+
+.contact__formInput--small:focus, .contact__formInput--small:active,
+.contact__formInput--smallAndNotValid:focus, .contact__formInput--smallAndNotValid:active {
+    background-color: rgba(0, 100, 0, 0.02);
+}
+
+.contact__formLabel {
+    font-weight: bold;
+    color: dimgray;
+}
+
+.contact__formLabel--notValid {
+    font-weight: bold;
+    color: #d43a3a;
+}
+
+.contact__formSubmitButton {
+    font-weight: bold;
+    border: 2px solid darkgreen;
+    background-color: darkgreen;
+    color: white;
+    -moz-border-radius: 0.3em;
+    -webkit-border-radius: 0.3em;
+    border-radius: 0.3em;
+    cursor: pointer;
+}
+
+.contact__formSubmitButton:active, .contact__formSubmitButton:focus, .contact__formSubmitButton:hover {
+    background-color: rgba(0, 100, 0, 0.85);
+    border-color: rgba(0, 100, 0, 0.85);
+}
+
+.contact__formSubmitButtonWrapper {}
+
+.contact__mainTitle {
+    font-weight: bold;
+    color: black;
+}
+
+@media (max-width: 400px) {
+    .contact {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
+    .contact__formField {
+        margin-bottom: 0.8em;
+    }
+
+    .contact__formFieldError {
+        margin-top: 0.4em;
+        font-size: 0.8em;
+    }
+
+    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+        font-size: 0.8em;
+        width: 90%;
+    }
+
+    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.4em;
+        font-size: 0.8em;
+        width: 90%;
+    }
+
+    .contact__formLabel, .contact__formLabel--notValid {
+        font-size: 0.9em;
+    }
+
+    .contact__formSubmitButton {
+        width: 100%;
+        margin-top: 2em;
+        margin-bottom: 5em;
+        padding: 0.4em 0.5em;
+        font-size: 0.9em;
+    }
+
+    .contact__formSubmitButtonWrapper {
+        text-align: center;
+        width: 95%;
+    }
+
+    .contact__mainTitle {
+        font-size: 1.5em;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+    .contact {
+        margin-left: 2em;
+        margin-right: 2em;
+    }
+
+    .contact__formField {
+        margin-bottom: 1.5em;
+    }
+
+    .contact__formFieldError {
+        margin-top: 0.5em;
+        font-size: 0.9em;
+    }
+
+    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.3em;
+        font-size: 1em;
+        width: 95%;
+    }
+
+    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.3em;
+        font-size: 1em;
+        width: 95%;
+    }
+
+    .contact__formLabel, .contact__formLabel--notValid {
+        font-size: 1em;
+    }
+
+    .contact__formSubmitButton {
+        width: 100%;
+        margin-top: 2em;
+        margin-bottom: 5em;
+        padding: 0.4em 0.5em;
+        font-size: 1em;
+    }
+
+    .contact__formSubmitButtonWrapper {
+        text-align: center;
+    }
+
+    .contact__mainTitle {
+        font-size: 1.7em;
+        margin-top: 0.5em;
+        margin-bottom: 1em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .contact {
+        margin-left: 4em;
+        margin-right: 2em;
+    }
+
+    .contact__formField {
+        margin-bottom: 2em;
+    }
+
+    .contact__formFieldError {
+        margin-top: 0.5em;
+        font-size: 1em;
+    }
+
+    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.5em;
+        font-size: 1em;
+        width: 80%;
+        max-width: 30em;
+    }
+
+    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+        margin-top: 0.4em;
+        margin-bottom: 0.5em;
+        font-size: 1em;
+        width: 80%;
+        max-width: 30em;
+    }
+
+    .contact__formLabel, .contact__formLabel--notValid {
+        font-size: 1em;
+    }
+
+    .contact__formSubmitButton {
+        margin-top: 2em;
+        margin-bottom: 6em;
+        padding: 0.4em 3em;
+        font-size: 1em;
+    }
+
+    .contact__mainTitle {
+        font-size: 2em;
+        margin-top: 0;
+        margin-bottom: 1em;
+    }
+}
+
+@media (min-width: 901px) {
+    .contact {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    .contact__formField {
+        margin-bottom: 2em;
+    }
+
+    .contact__formFieldError {
+        margin-top: 0.5em;
+        font-size: 1em;
+    }
+
+    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        font-size: 1em;
+        width: 35em;
+    }
+
+    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+        margin-top: 0.5em;
+        margin-bottom: 0.5em;
+        font-size: 1em;
+        width: 35em;
+    }
+
+    .contact__formLabel, .contact__formLabel--notValid {
+        font-size: 1.1em;
+    }
+
+    .contact__formSubmitButton {
+        margin-top: 2em;
+        margin-bottom: 8em;
+        padding: 0.5em 3.5em;
+        font-size: 1em;
+    }
+
+    .contact__mainTitle {
+        font-size: 2.5em;
+        margin-top: -0.3em;
+        margin-bottom: 1em;
+    }
+}

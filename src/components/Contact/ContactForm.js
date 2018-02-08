@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Field from './Field';
+import Feedback from '../Feedback/Feedback';
 import * as utils from '../../utils/utils';
 import './contact.css';
 
@@ -17,7 +18,10 @@ class ContactForm extends React.Component {
             nameIsValid: true,
             emailIsValid: true,
             subjectIsValid: true,
-            messageIsValid: true
+            messageIsValid: true,
+
+            errorWhenSendingMessage: '',
+            messageHasBeenSent: false
         };
 
         this.onFormSubmit = this.onFormSubmit.bind(this);
@@ -36,7 +40,9 @@ class ContactForm extends React.Component {
 
     doFormSubmit() {
         if (this.formIsValid()) {
-            window.alert("Valid! Here we need to make a call to the backend.");
+            this.setState({
+                messageHasBeenSent: true
+            });
         }
     }
 
@@ -60,8 +66,18 @@ class ContactForm extends React.Component {
     render() {
         const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
 
+        let feedback;
+
+        if (this.state.messageHasBeenSent) {
+            feedback = <Feedback type="SUCCESS" title="It's done!" message="Your e-mail has been sent." />
+        } else if (this.state.errorWhenSendingMessage) {
+            feedback = <Feedback type="ERROR" title="An error occurred" message={this.state.errorWhenSendingMessage} />
+        }
+
         return (
-            <form>
+            <form className="contact__form">
+                {feedback}
+
                 <Field type="SMALL" name="Name" value={this.state.name} valueChanged={this.handleChange.bind(this, 'name')}
                        isValid={this.state.nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
@@ -74,8 +90,9 @@ class ContactForm extends React.Component {
                 <Field type="BIG"  name="Message" value={this.state.message} valueChanged={this.handleChange.bind(this, 'message')}
                        isValid={this.state.messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-
-                <button type="submit" onClick={this.onFormSubmit}>Send</button>
+                <div className="contact__formSubmitButtonWrapper">
+                    <button type="submit" className="contact__formSubmitButton" onClick={this.onFormSubmit}>Send</button>
+                </div>
             </form>
         );
     }
