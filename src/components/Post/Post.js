@@ -1,31 +1,48 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
-import allPosts from '../Posts/posts.json';
 import Entry from './Entry';
 import UnknownPost from './UnknownPost';
 import './post.css';
 
-const Post = (props) => {
-    const post = allPosts.find(p => p.url === props.match.params.slug);
-    var postContent;
+class Post extends React.Component {
+    constructor(props) {
+        super(props);
 
-    if (post) {
-        postContent = <Entry post={post} />
-    } else {
-        postContent = <UnknownPost />
+        this.state = {
+            post: null
+        }
     }
 
+    componentDidMount() {
+        axios.get('http://localhost:3001/posts/' + this.props.match.params.slug)
+            .then(res => {
+                this.setState({
+                    post: res.data
+                });
+            });
+    }
 
-    return (
-        <main className="post">
-            <nav className="post__backNavigation">
-                <Link to="/posts" className="post__backToPostsLink">&larr; Back to posts</Link>
-            </nav>
+    render() {
+        var postContent;
 
-            {postContent}
-        </main>
-    );
+        if (this.state.post) {
+            postContent = <Entry post={this.state.post} />
+        } else {
+            postContent = <UnknownPost />
+        }
+
+        return (
+            <main className="post">
+                <nav className="post__backNavigation">
+                    <Link to="/posts" className="post__backToPostsLink">&larr; Back to posts</Link>
+                </nav>
+
+                {postContent}
+            </main>
+        );
+    }
 };
 
 export default Post;

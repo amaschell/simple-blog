@@ -1,6 +1,6 @@
 import React from 'react';
+import axios from 'axios';
 
-import posts from './posts.json';
 import AbstractEntry from './AbstractEntry';
 import '../Posts/posts.css';
 
@@ -9,8 +9,17 @@ class Posts extends React.Component {
         super(props);
 
         this.state = {
-            posts: posts
+            posts: []
         };
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:3001/posts')
+            .then(res => {
+                this.setState({
+                    posts: res.data
+                });
+            });
     }
 
     render() {
