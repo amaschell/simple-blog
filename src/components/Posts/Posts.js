@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import makeRequestURL from "../../config/requests";
+
 import AbstractEntry from './AbstractEntry';
 import '../Posts/posts.css';
 
@@ -14,7 +16,7 @@ class Posts extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/posts')
+        axios.get(makeRequestURL('posts'))
             .then(res => {
                 this.setState({
                     posts: res.data

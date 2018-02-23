@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import makeRequestURL from "../../config/requests";
+
 import UserInfo from "./UserInfo";
 import './about.css';
 
@@ -14,7 +16,7 @@ class About extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/about')
+        axios.get(makeRequestURL('about'))
             .then(res => {
                 this.setState({
                     users: res.data

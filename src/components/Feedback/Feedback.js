@@ -12,11 +12,11 @@ const Feedback = (props) => {
     }
 
     return (
-        <p className="feedback">
+        <div className="feedback">
             <h3>{props.title}</h3>
             <i className={iconStyle}/>
             <span>{props.message}</span>
-        </p>
+        </div>
     );
 };
 

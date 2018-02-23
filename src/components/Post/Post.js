@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
 
+import makeRequestURL from "../../config/requests";
+
 import Entry from './Entry';
 import UnknownPost from './UnknownPost';
 import './post.css';
@@ -16,7 +18,7 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:3001/posts/' + this.props.match.params.slug)
+        axios.get(makeRequestURL('posts/' + this.props.match.params.slug))
             .then(res => {
                 this.setState({
                     post: res.data
@@ -25,7 +27,7 @@ class Post extends React.Component {
     }
 
     render() {
-        var postContent;
+        let postContent;
 
         if (this.state.post) {
             postContent = <Entry post={this.state.post} />
@@ -43,6 +45,6 @@ class Post extends React.Component {
             </main>
         );
     }
-};
+}
 
 export default Post;
