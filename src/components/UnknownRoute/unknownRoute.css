@@ -1,1 +1,101 @@
-.unknownRoute {}
+.unknownRoute {
+    font-weight: bold;
+    color: black;
+    text-align: center;
+    margin-bottom: 5em;
+}
+
+.unknownRoute__code {
+    display: inline-block;
+    color: #292f33;
+}
+
+.unknownRoute__icon {}
+
+.unknownRoute__message {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+}
+
+
+@media screen and (max-width: 399px) {
+    .unknownRoute {
+        padding-top: 1em;
+        padding-left: 1em;
+        padding-right: 1em;
+    }
+
+    .unknownRoute__code {
+        font-size: 2em;
+        vertical-align: sub;
+    }
+
+    .unknownRoute__icon {
+        font-size: 1.5em;
+        margin-right: 0.3em;
+    }
+
+    .unknownRoute__message {
+        margin-top: 1.2em;
+    }
+}
+
+@media screen and (min-width: 400px) and (max-width: 899px) {
+    .unknownRoute {
+        padding-top: 1em;
+    }
+
+    .unknownRoute__code {
+        font-size: 3em;
+        vertical-align: middle;
+        margin-bottom: 0.2em;
+    }
+
+    .unknownRoute__icon {
+        font-size: 2em;
+        margin-right: 0.3em;
+    }
+
+    .unknownRoute__message {
+        font-size: 1.3em;
+        margin-top: 0.7em;
+    }
+}
+
+@media screen and (min-width: 900px) and (max-width: 1199px) {
+    .unknownRoute__code {
+        font-size: 4em;
+        vertical-align: middle;
+        margin-bottom: 0.2em;
+    }
+
+    .unknownRoute__icon {
+        font-size: 2.5em;
+        margin-right: 0.3em;
+    }
+
+    .unknownRoute__message {
+        font-size: 1.5em;
+        margin-top: 0.5em;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .unknownRoute__code {
+        font-size: 5em;
+        vertical-align: middle;
+        margin-bottom: 0.3em;
+    }
+
+    .unknownRoute__icon {
+        font-size: 3.5em;
+        margin-right: 0.3em;
+    }
+
+    .unknownRoute__message {
+        font-size: 2em;
+        margin-top: 0.5em;
+    }
+}
