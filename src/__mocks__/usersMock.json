@@ -1,0 +1,16 @@
+[
+  {
+    "id": "1",
+    "firstName": "Test First 1",
+    "lastName": "Test Last 1",
+    "description": "Test Description 1",
+    "profilePicture": "test_user_1.jpg"
+  },
+  {
+    "id": "2",
+    "firstName": "Test First 2",
+    "lastName": "Test Last 2",
+    "description": "Test Description 2",
+    "profilePicture": "test_user_2.jpg"
+  }
+]
