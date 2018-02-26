@@ -9,7 +9,7 @@ import Home from "../Home/Home";
 import Main from './Main';
 import Post from '../Post/Post';
 import Posts from '../Posts/Posts';
-import UnknownRoute from "../UnknownRoute/UnknownRoute";
+import UnknownRoute from "../InfoMessage/InfoMessage";
 
 // We need to wrap the component inside a router several times here because the Main component uses react-router-dom's
 // Switch and Route component and needs therefore a router context.

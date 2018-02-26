@@ -6,7 +6,7 @@ import Contact from '../Contact/Contact';
 import Home from '../Home/Home';
 import Posts from '../Posts/Posts';
 import Post from '../Post/Post';
-import UnknownRoute from '../UnknownRoute/UnknownRoute';
+import InfoMessage from '../InfoMessage/InfoMessage';
 import './main.css';
 
 const Main = () => (
@@ -17,7 +17,11 @@ const Main = () => (
             <Route exact path="/posts" component={Posts}/>
             <Route exact path="/posts/:slug" component={Post}/>
             <Route path="/contact" component={Contact}/>
-            <Route component={UnknownRoute}/>
+
+            /* 404 Route if nothing else matches. */
+            <Route render={
+                () => <InfoMessage title="404" text="Sorry, this page does not exist..." iconClass="em em-black_heart"/>
+            }/>
         </Switch>
     </main>
 );
