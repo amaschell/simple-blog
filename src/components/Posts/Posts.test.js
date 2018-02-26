@@ -1,9 +1,12 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-
 import Posts from './Posts';
 
-it('renders without crashing', () => {
-    const div = document.createElement('div');
-    ReactDOM.render(<Posts />, div);
+describe('Posts', () => {
+
+    test('Dummy', () => {
+        // TODO
+        const a = 3;
+        expect(a).toEqual(2);
+    });
 });
+
