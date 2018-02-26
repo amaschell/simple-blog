@@ -1,12 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
-
-import makeRequestURL from "../../config/requests";
 
 import Entry from './Entry';
 import UnknownPost from './UnknownPost';
 import './post.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 
 class Post extends React.Component {
     constructor(props) {
@@ -18,7 +16,7 @@ class Post extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(makeRequestURL('posts/' + this.props.match.params.slug))
+        requestsAndURLs.getPost(this.props.match.params.slug)
             .then(res => {
                 this.setState({
                     post: res.data
@@ -36,13 +34,13 @@ class Post extends React.Component {
         }
 
         return (
-            <main className="post">
+            <div className="post">
                 <nav className="post__backNavigation">
-                    <Link to="/posts" className="post__backToPostsLink">&larr; Back to posts</Link>
+                    <Link to={requestsAndURLs.makePostsURL()} className="post__backToPostsLink">&larr; Back to posts</Link>
                 </nav>
 
                 {postContent}
-            </main>
+            </div>
         );
     }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './post.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 
 const Entry = (props) => {
     const {author, date, title, content} = props.post;
@@ -11,7 +12,7 @@ const Entry = (props) => {
             <div className="post__date">{date}</div>
             <h2 className="post__title">{title}</h2>
             <div className="post__author">
-                by <Link to="/about" className="post__authorLink">{author}</Link>
+                by <Link to={requestsAndURLs.makeAboutURL()} className="post__authorLink">{author}</Link>
             </div>
             <p className="post__content">{content}</p>
         </div>

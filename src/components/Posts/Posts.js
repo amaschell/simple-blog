@@ -1,10 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-
-import makeRequestURL from "../../config/requests";
 
 import AbstractEntry from './AbstractEntry';
 import '../Posts/posts.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 
 class Posts extends React.Component {
     constructor(props) {
@@ -16,7 +14,7 @@ class Posts extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(makeRequestURL('posts'))
+        requestsAndURLs.getPosts()
             .then(res => {
                 this.setState({
                     posts: res.data

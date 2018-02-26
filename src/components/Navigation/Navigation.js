@@ -1,16 +1,16 @@
 import React from 'react';
 
 import NavigationItem from './NavigationItem';
-
 import './navigation.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 
 const Navigation = () => (
     <nav className="navbar">
         <ul className="navbar__list">
-            <NavigationItem name="Home" url="/"/>
-            <NavigationItem name="About" url="/about"/>
-            <NavigationItem name="Posts" url="/posts"/>
-            <NavigationItem name="Contact" url="/contact"/>
+            <NavigationItem name="Home" url={requestsAndURLs.makeIndexURL()}/>
+            <NavigationItem name="About" url={requestsAndURLs.makeAboutURL()}/>
+            <NavigationItem name="Posts" url={requestsAndURLs.makePostsURL()}/>
+            <NavigationItem name="Contact" url={requestsAndURLs.makeContactUrl()}/>
         </ul>
     </nav>
 );

@@ -13,7 +13,7 @@ describe('Footer', () => {
 
     test('Renders without crashing.', () => {
         const div = document.createElement('div');
-        ReactDOM.render(<Footer />, div);
+        ReactDOM.render(shallowWrapper, div);
     });
 
     test('Renders a primarily a footer.', () => {

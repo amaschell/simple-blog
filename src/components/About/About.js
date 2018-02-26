@@ -1,10 +1,8 @@
 import React from 'react';
-import axios from 'axios';
-
-import makeRequestURL from "../../config/requests";
 
 import UserInfo from "./UserInfo";
 import './about.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 
 class About extends React.Component {
     constructor(props) {
@@ -16,12 +14,20 @@ class About extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(makeRequestURL('about'))
+        return requestsAndURLs.getAbout()
             .then(res => {
-                this.setState({
-                    users: res.data
-                })
+                this.setAuthors(res.data);
+            })
+            .catch((error) => {
+                //TODO
+                console.log("An error occurred: " + error);
             });
+    }
+
+    setAuthors(authors) {
+        this.setState({
+            users: authors
+        })
     }
 
     render() {

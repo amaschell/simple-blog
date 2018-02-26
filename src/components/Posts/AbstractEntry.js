@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom'
 
 import './posts.css';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
+
 
 const AbstractEntry = (props) => {
     const {abstract, author, date, title, url} = props.post;
@@ -9,7 +11,7 @@ const AbstractEntry = (props) => {
     return (
         <article className="abstractEntry">
             <h2 className="abstractEntry__title">
-                <Link to={`posts/${url}`} className="abstractEntry__link">
+                <Link to={requestsAndURLs.makePostURL(url)} className="abstractEntry__link">
                     {title}
                 </Link>
             </h2>
