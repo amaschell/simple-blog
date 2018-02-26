@@ -18,7 +18,7 @@ const Main = () => (
             <Route exact path="/posts/:slug" component={Post}/>
             <Route path="/contact" component={Contact}/>
 
-            /* 404 Route if nothing else matches. */
+            { /* 404 Route if nothing else matches. */ }
             <Route render={
                 () => <InfoMessage title="404" text="Sorry, this page does not exist..." iconClass="em em-black_heart"/>
             }/>
