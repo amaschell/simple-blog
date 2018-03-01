@@ -11,27 +11,23 @@ class About extends React.Component {
 
         this.state = {
             users: [],
-            hasError: false,
+            hasError: false
         };
     }
 
     componentDidMount() {
         return requestsAndURLs.getAbout()
             .then(res => {
-                this.setAuthors(res.data);
+                this.setState({
+                    hasError: false,
+                    users: res.data
+                })
             })
             .catch((error) => {
                 this.setState({
                     hasError: true
                 })
             });
-    }
-
-    setAuthors(authors) {
-        this.setState({
-            hasError: false,
-            users: authors
-        })
     }
 
     renderAuthors() {

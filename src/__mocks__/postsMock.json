@@ -1,0 +1,30 @@
+[
+  {
+    "id": "1",
+    "date": "01.01.2001",
+    "title": "Test1",
+    "author": "Testy McTest",
+    "url": "test-1",
+    "abstract": "Test 1 Abstract.",
+    "content": "Test 1 Content"
+  },
+  {
+    "id": "2",
+    "date": "02.01.2001",
+    "title": "Test2",
+    "author": "Testy McTest",
+    "url": "test-2",
+    "abstract": "Test 2 Abstract.",
+    "content": "Test 2 Content"
+  },
+  {
+    "id": "3",
+    "date": "03.01.2001",
+    "title": "Test3",
+    "author": "Testy McTest",
+    "url": "test-3",
+    "abstract": "Test 3 Abstract.",
+    "content": "Test 3 Content"
+  }
+]
+

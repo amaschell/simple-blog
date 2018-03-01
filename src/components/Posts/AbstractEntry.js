@@ -9,16 +9,18 @@ const AbstractEntry = (props) => {
     const {abstract, author, date, title, url} = props.post;
 
     return (
-        <article className="abstractEntry">
-            <h2 className="abstractEntry__title">
-                <Link to={requestsAndURLs.makePostURL(url)} className="abstractEntry__link">
-                    {title}
-                </Link>
-            </h2>
-            <time className="abstractEntry__date">{date}</time>
-            <span className="abstractEntry__author">by {author}</span>
-            <p className="abstractEntry__abstract">{abstract}</p>
-        </article>
+        <li className="abstractEntry">
+            <article >
+                <h2 className="abstractEntry__title">
+                    <Link to={requestsAndURLs.makePostURL(url)} className="abstractEntry__link">
+                        {title}
+                    </Link>
+                </h2>
+                <time className="abstractEntry__date">{date}</time>
+                <span className="abstractEntry__author">by {author}</span>
+                <p className="abstractEntry__abstract">{abstract}</p>
+            </article>
+        </li>
     );
 };
 

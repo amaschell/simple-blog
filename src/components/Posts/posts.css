@@ -1,4 +1,6 @@
-.abstractEntry {}
+.abstractEntry {
+    display: block;
+}
 
 .abstractEntry__abstract {
     color: #616060;
