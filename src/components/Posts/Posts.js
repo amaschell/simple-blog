@@ -19,12 +19,13 @@ class Posts extends React.Component {
         return requestsAndURLs.getPosts()
             .then(res => {
                 this.setState({
-                    hasError: false,
-                    posts: res.data
+                    posts: res.data,
+                    hasError: false
                 })
             })
             .catch((error) => {
                 this.setState({
+                    posts: [],
                     hasError: true
                 })
             });

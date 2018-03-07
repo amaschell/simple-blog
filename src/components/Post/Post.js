@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import Entry from './Entry';
-import UnknownPost from './UnknownPost';
+import InfoMessage from '../InfoMessage/InfoMessage';
 import './post.css';
 import * as requestsAndURLs from "../../config/requestsAndURLs";
 
@@ -11,35 +11,62 @@ class Post extends React.Component {
         super(props);
 
         this.state = {
-            post: null
+            post: null,
+            hasGeneralServerError: false
         }
     }
 
     componentDidMount() {
-        requestsAndURLs.getPost(this.props.match.params.slug)
+        return requestsAndURLs.getPost(this.props.match.params.slug)
             .then(res => {
                 this.setState({
-                    post: res.data
+                    post: res.data,
+                    hasGeneralServerError: false
+                });
+            })
+            .catch(error => {
+                let is404Error;
+
+                try {
+                    is404Error = error.response.status === 404;
+                } catch (e) {
+                    is404Error = false;
+                }
+
+                this.setState({
+                    post: null,
+                    hasGeneralServerError: !is404Error
                 });
             });
     }
 
-    render() {
-        let postContent;
+    renderPost() {
+        let toBeRendered;
 
-        if (this.state.post) {
-            postContent = <Entry post={this.state.post} />
+        if (this.state.hasGeneralServerError) {
+            // The promise was rejected by the server because of a specific error.
+            toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
+
+        } else if (!this.state.post) {
+            // The promise was resolved but the post was not found (404).
+            toBeRendered = <InfoMessage iconClass="em em-ghost" text="This post does not seem to exist..."/>
+
         } else {
-            postContent = <UnknownPost />
+            // The post does exist, simply display it.
+            toBeRendered = <Entry post={this.state.post} />;
         }
 
+        return toBeRendered;
+    }
+
+    render() {
         return (
             <div className="post">
                 <nav className="post__backNavigation">
                     <Link to={requestsAndURLs.makePostsURL()} className="post__backToPostsLink">&larr; Back to posts</Link>
                 </nav>
 
-                {postContent}
+                { this.renderPost() }
             </div>
         );
     }

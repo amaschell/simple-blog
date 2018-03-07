@@ -19,12 +19,13 @@ class About extends React.Component {
         return requestsAndURLs.getAbout()
             .then(res => {
                 this.setState({
-                    hasError: false,
-                    users: res.data
+                    users: res.data,
+                    hasError: false
                 })
             })
             .catch((error) => {
                 this.setState({
+                    posts: [],
                     hasError: true
                 })
             });
