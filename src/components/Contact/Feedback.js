@@ -8,7 +8,17 @@ class Feedback extends React.Component {
     }
 
     componentDidMount() {
-        // As this component shows the result of the contact form POST request to the server,
+        // After the first rendering.
+        this.scrollIntoView();
+    }
+
+    componentDidUpdate() {
+        // For all subsequent renderings after the first rendering.
+        this.scrollIntoView();
+    }
+
+    scrollIntoView() {
+        // As this component displays the result of the contact form POST request to the server,
         // we want the user to directly see this important message by scrolling it into focus.
         window.scrollTo(0, this.divToFocus.offsetTop);
     }
