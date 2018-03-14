@@ -1,8 +1,9 @@
 import React from 'react';
 
 import Field from './Field';
-import Feedback from '../Feedback/Feedback';
+import Feedback from './Feedback';
 import * as utils from '../../utils/utils';
+import * as requestsAndURLs from "../../config/requestsAndURLs";
 import './contact.css';
 
 class ContactForm extends React.Component {
@@ -38,11 +39,32 @@ class ContactForm extends React.Component {
                this.state.subjectIsValid && this.state.messageIsValid;
     }
 
+    makeFormDataForRequest() {
+        // TODO: Security checks here? Escaping?
+
+        return {
+            name: this.state.name,
+            email: this.state.email,
+            subject: this.state.subject,
+            message: this.state.message
+        };
+    }
+
+
     doFormSubmit() {
         if (this.formIsValid()) {
-            this.setState({
-                messageHasBeenSent: true
-            });
+            return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
+                .then(res => {
+                    this.setState({
+                        messageHasBeenSent: true
+                    })
+                })
+                .catch((error) => {
+                    this.setState({
+                        messageHasBeenSent: false,
+                        errorWhenSendingMessage: error.response.data
+                    })
+                });
         }
     }
 
@@ -57,6 +79,7 @@ class ContactForm extends React.Component {
                 subjectIsValid: utils.isNonEmptyString(this.state.subject),
                 messageIsValid: utils.isNonEmptyString(this.state.message),
             },
+
             this.doFormSubmit
         );
 
@@ -69,15 +92,14 @@ class ContactForm extends React.Component {
         let feedback;
 
         if (this.state.messageHasBeenSent) {
-            feedback = <Feedback type="SUCCESS" title="It's done!" message="Your e-mail has been sent." />
+            feedback = <Feedback type="SUCCESS" title="Yeeehaaa!" message="Your message has been delivered successfully. " />
         } else if (this.state.errorWhenSendingMessage) {
-            feedback = <Feedback type="ERROR" title="An error occurred" message={this.state.errorWhenSendingMessage} />
+            feedback = <Feedback type="ERROR" title="Your mail could not get sent due to an error!"
+                                 message={this.state.errorWhenSendingMessage} />
         }
 
         return (
             <form className="contact__form">
-                {feedback}
-
                 <Field type="SMALL" name="Name" value={this.state.name} valueChanged={this.handleChange.bind(this, 'name')}
                        isValid={this.state.nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
@@ -89,6 +111,8 @@ class ContactForm extends React.Component {
 
                 <Field type="BIG"  name="Message" value={this.state.message} valueChanged={this.handleChange.bind(this, 'message')}
                        isValid={this.state.messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+
+                {feedback}
 
                 <div className="contact__formSubmitButtonWrapper">
                     <button type="submit" className="contact__formSubmitButton" onClick={this.onFormSubmit}>Send</button>

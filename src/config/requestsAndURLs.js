@@ -22,6 +22,10 @@ export function makeContactUrl() {
     return '/contact';
 }
 
+export function makeContactFormSubmitUrl() {
+    return '/send-contact-mail';
+}
+
 export function makeImagesUrl(staticResource) {
     return '/images/' + staticResource;
 }
@@ -46,4 +50,8 @@ export function getPosts() {
 
 export function getPost(slug) {
     return axios.get(makeRequestURL(makePostURL(slug)));
+}
+
+export function postContactForm(data) {
+    return axios.post(makeRequestURL(makeContactFormSubmitUrl()), data)
 }
