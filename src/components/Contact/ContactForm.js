@@ -87,38 +87,50 @@ class ContactForm extends React.Component {
     }
 
     render() {
-        const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
-
-        let feedback;
+        let renderedResult;
 
         if (this.state.messageHasBeenSent) {
-            feedback = <Feedback type="SUCCESS" title="Yeeehaaa!" message="Your message has been delivered successfully. " />
-        } else if (this.state.errorWhenSendingMessage) {
-            feedback = <Feedback type="ERROR" title="Your mail could not get sent due to an error!"
-                                 message={this.state.errorWhenSendingMessage} />
+            renderedResult = <Feedback type="SUCCESS" title="Yeeehaaa!"
+                                       message="Your message has been delivered successfully. " />;
+        } else {
+            const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
+            let errorMessage;
+
+            if (this.state.errorWhenSendingMessage) {
+                errorMessage = <Feedback type="ERROR" title="Your mail could not get sent due to an error!"
+                                         message={this.state.errorWhenSendingMessage} />;
+            }
+
+            renderedResult =
+                <form className="contact__form">
+                    <Field type="SMALL" name="Name" value={this.state.name}
+                           valueChanged={this.handleChange.bind(this, 'name')}
+                           isValid={this.state.nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+
+                    <Field type="SMALL" name="E-mail" value={this.state.email}
+                           valueChanged={this.handleChange.bind(this, 'email')}
+                           isValid={this.state.emailIsValid} errorText="This is not a valid e-mail address!" />
+
+                    <Field type="SMALL" name="Subject" value={this.state.subject}
+                           valueChanged={this.handleChange.bind(this, 'subject')}
+                           isValid={this.state.subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+
+                    <Field type="BIG"  name="Message" value={this.state.message}
+                           valueChanged={this.handleChange.bind(this, 'message')}
+                           isValid={this.state.messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+
+                    {errorMessage}
+
+                    <div className="contact__formSubmitButtonWrapper">
+                        <button type="submit" className="contact__formSubmitButton" onClick={this.onFormSubmit}>
+                            Send
+                        </button>
+                    </div>
+                </form>;
         }
 
-        return (
-            <form className="contact__form">
-                <Field type="SMALL" name="Name" value={this.state.name} valueChanged={this.handleChange.bind(this, 'name')}
-                       isValid={this.state.nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                <Field type="SMALL" name="E-mail" value={this.state.email} valueChanged={this.handleChange.bind(this, 'email')}
-                       isValid={this.state.emailIsValid} errorText="This is not a valid e-mail address!" />
-
-                <Field type="SMALL" name="Subject" value={this.state.subject} valueChanged={this.handleChange.bind(this, 'subject')}
-                       isValid={this.state.subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
-
-                <Field type="BIG"  name="Message" value={this.state.message} valueChanged={this.handleChange.bind(this, 'message')}
-                       isValid={this.state.messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
-
-                {feedback}
-
-                <div className="contact__formSubmitButtonWrapper">
-                    <button type="submit" className="contact__formSubmitButton" onClick={this.onFormSubmit}>Send</button>
-                </div>
-            </form>
-        );
+        return renderedResult;
     }
 }
 
