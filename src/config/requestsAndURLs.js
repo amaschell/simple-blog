@@ -1,40 +1,47 @@
 import axios from "axios";
 
-// CONSTANTS
+// All routes and URL's that exist for this application. The base URL is absolute, all the others are relative.
 const BASE_URL = 'http://localhost:3001';
+const INDEX_URL = '/';
+const ABOUT_URL = '/about';
+const POSTS_URL = '/posts';
+const POST_URL = '/posts/:slug';
+const CONTACT_URL = '/contact';
+const POST_CONTACT_FORM_URL = "/send-contact-mail";
+const IMAGES_URL = "/images";
 
 
-// URLS
+// Getters that are used when defining the routes in the router. These methods are also useful for testing.
 export function makeIndexURL() {
-    return '/';
+    return INDEX_URL;
 }
 
 export function makeAboutURL() {
-    return '/about';
+    return ABOUT_URL;
 }
 
 export function makePostsURL() {
-    return '/posts';
+    return POSTS_URL;
 }
 
 export function makePostURL(slug) {
-    return '/posts/' + slug;
+    return POSTS_URL + '/' + slug;
 }
 
 export function makeStaticPostURL() {
-    return '/posts/:slug';
+    return POST_URL;
 }
 
 export function makeContactUrl() {
-    return '/contact';
+    return CONTACT_URL;
 }
 
 export function makeContactFormSubmitUrl() {
-    return '/send-contact-mail';
+    return POST_CONTACT_FORM_URL;
 }
 
 export function makeImagesUrl(staticResource) {
-    return '/images/' + staticResource;
+    return IMAGES_URL + '/' + staticResource;
 }
 
 export function makeRequestURL(resource) {
@@ -46,7 +53,7 @@ export function makeImageSourceURL(staticResource) {
 }
 
 
-// REQUESTS
+// Requests used in the component methods.
 export function getAbout() {
     return axios.get(makeRequestURL(makeAboutURL()));
 }
