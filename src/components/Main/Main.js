@@ -8,15 +8,16 @@ import Posts from '../Posts/Posts';
 import Post from '../Post/Post';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './main.css';
+import * as urls from "../../config/requestsAndURLs";
 
 const Main = () => (
     <main className="main">
         <Switch>
-            <Route exact path="/" component={Home}/>
-            <Route path="/about" component={About}/>
-            <Route exact path="/posts" component={Posts}/>
-            <Route exact path="/posts/:slug" component={Post}/>
-            <Route path="/contact" component={Contact}/>
+            <Route exact path={urls.makeIndexURL()} component={Home}/>
+            <Route path={urls.makeAboutURL()} component={About}/>
+            <Route exact path={urls.makePostsURL()} component={Posts}/>
+            <Route exact path={urls.makeStaticPostURL()} component={Post}/>
+            <Route path={urls.makeContactUrl()} component={Contact}/>
 
             { /* 404 Route if nothing else matches. */ }
             <Route render={

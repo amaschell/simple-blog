@@ -1,7 +1,10 @@
 import axios from "axios";
 
-// URLS
+// CONSTANTS
+const BASE_URL = 'http://localhost:3001';
 
+
+// URLS
 export function makeIndexURL() {
     return '/';
 }
@@ -18,6 +21,10 @@ export function makePostURL(slug) {
     return '/posts/' + slug;
 }
 
+export function makeStaticPostURL() {
+    return '/posts/:slug';
+}
+
 export function makeContactUrl() {
     return '/contact';
 }
@@ -31,15 +38,15 @@ export function makeImagesUrl(staticResource) {
 }
 
 export function makeRequestURL(resource) {
-    return 'http://localhost:3001' + resource;
+    return BASE_URL + resource;
 }
 
 export function makeImageSourceURL(staticResource) {
     return makeRequestURL(makeImagesUrl(staticResource));
 }
 
-// REQUESTS
 
+// REQUESTS
 export function getAbout() {
     return axios.get(makeRequestURL(makeAboutURL()));
 }
