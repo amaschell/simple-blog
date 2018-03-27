@@ -25,7 +25,7 @@ class ContactForm extends React.Component {
             messageHasBeenSent: false
         };
 
-        this.onFormSubmit = this.onFormSubmit.bind(this);
+        this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
     handleChange(name, newValue) {
@@ -50,39 +50,56 @@ class ContactForm extends React.Component {
         };
     }
 
-
     doFormSubmit() {
-        if (this.formIsValid()) {
-            return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
-                .then(res => {
-                    this.setState({
-                        messageHasBeenSent: true
-                    })
+        return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
+            .then(res => {
+                this.setState({
+                    messageHasBeenSent: true
                 })
-                .catch((error) => {
-                    this.setState({
-                        messageHasBeenSent: false,
-                        errorWhenSendingMessage: error.response.data
-                    })
-                });
-        }
+            })
+            .catch((error) => {
+                this.setState({
+                    messageHasBeenSent: false,
+                    errorWhenSendingMessage: error.response.data
+                })
+            });
     }
 
-    onFormSubmit(e) {
+    validateAndTryToSubmitForm() {
+        // Do the validation first, and then try to do the actual submit action!
+        return new Promise((resolve, reject) => {
+            this.setState(
+                {
+                    nameIsValid: utils.isNonEmptyString(this.state.name),
+                    emailIsValid: utils.isValidEmail(this.state.email),
+                    subjectIsValid: utils.isNonEmptyString(this.state.subject),
+                    messageIsValid: utils.isNonEmptyString(this.state.message),
+                },
+
+                async () => {
+                    if (this.formIsValid()) {
+                        resolve(this.doFormSubmit());
+                    } else {
+                        reject("Form not valid!");
+                    }
+
+                }
+            );
+        });
+    }
+
+    handleButtonClick(e) {
+        // Disable the default form submit, so that possible invalid fields are properly shown
+        // without clearing the form input.
         e.preventDefault();
 
-        // Do the validation first, and then try to do the actual submit action!
-        this.setState(
-            {
-                nameIsValid: utils.isNonEmptyString(this.state.name),
-                emailIsValid: utils.isValidEmail(this.state.email),
-                subjectIsValid: utils.isNonEmptyString(this.state.subject),
-                messageIsValid: utils.isNonEmptyString(this.state.message),
-            },
+        this.validateAndTryToSubmitForm()
+            .catch((error) => {
+                // Swallow this error silently. This is for debugging purposes.
+                //console.log(error);
+            });
 
-            this.doFormSubmit
-        );
-
+        // Stop propagation of the event. Only this button should trigger the request.
         return false;
     }
 
@@ -91,7 +108,7 @@ class ContactForm extends React.Component {
 
         if (this.state.messageHasBeenSent) {
             renderedResult = <Feedback type="SUCCESS" title="Yeeehaaa!"
-                                       message="Your message has been delivered successfully. " />;
+                                       message="Your message has been delivered successfully." />;
         } else {
             const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
             let errorMessage;
@@ -122,7 +139,7 @@ class ContactForm extends React.Component {
                     {errorMessage}
 
                     <div className="contact__formSubmitButtonWrapper">
-                        <button type="submit" className="contact__formSubmitButton" onClick={this.onFormSubmit}>
+                        <button type="submit" className="contact__formSubmitButton" onClick={this.handleButtonClick}>
                             Send
                         </button>
                     </div>
