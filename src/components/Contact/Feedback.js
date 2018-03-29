@@ -24,13 +24,15 @@ class Feedback extends React.Component {
     }
 
     render() {
+        const {message, title, type} = this.props;
+
         return (
             <div tabIndex="-1"
-                 className={(this.props.type === "SUCCESS" ? 'contact__feedback--success' : 'contact__feedback--failure')}
+                 className={(type === "SUCCESS" ? 'contact__feedback--success' : 'contact__feedback--failure')}
                  ref={(node) => { this.divToFocus = node; }}>
 
-                <h3 className='contact__feedbackTitle'>{this.props.title}</h3>
-                <div className='contact__feedbackMessage'>{this.props.message}</div>
+                <h3 className='contact__feedbackTitle'>{title}</h3>
+                <div className='contact__feedbackMessage'>{message}</div>
             </div>
         );
     }

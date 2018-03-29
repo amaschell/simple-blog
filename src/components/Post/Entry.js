@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './post.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 const Entry = (props) => {
     const {author, date, title, content} = props.post;

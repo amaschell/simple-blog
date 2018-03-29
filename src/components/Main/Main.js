@@ -8,7 +8,7 @@ import Posts from '../Posts/Posts';
 import Post from '../Post/Post';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './main.css';
-import * as urls from "../../config/requestsAndURLs";
+import * as urls from "../../config/requestsUtility";
 
 const Main = () => (
     <main className="main">

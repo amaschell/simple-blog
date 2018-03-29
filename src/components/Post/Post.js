@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Entry from './Entry';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './post.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 class Post extends React.Component {
     constructor(props) {
@@ -41,19 +41,20 @@ class Post extends React.Component {
     }
 
     renderPost() {
+        const {hasGeneralServerError, post} = this.state;
         let toBeRendered;
 
-        if (this.state.hasGeneralServerError) {
+        if (hasGeneralServerError) {
             // The promise was rejected by the server because of a specific error.
             toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
 
-        } else if (!this.state.post) {
+        } else if (!post) {
             // The promise was resolved but the post was not found (404).
             toBeRendered = <InfoMessage iconClass="em em-ghost" text="This post does not seem to exist..."/>
 
         } else {
             // The post does exist, simply display it.
-            toBeRendered = <Entry post={this.state.post} />;
+            toBeRendered = <Entry post={post} />;
         }
 
         return toBeRendered;

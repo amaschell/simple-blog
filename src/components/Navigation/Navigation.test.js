@@ -5,7 +5,7 @@ import {mount} from 'enzyme';
 
 import Navigation from './Navigation';
 import NavigationItem from './NavigationItem';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 describe('Navigation', () => {
     let wrapper;
@@ -19,6 +19,20 @@ describe('Navigation', () => {
                         </MemoryRouter>
         );
     });
+
+    /**
+     * Helper method to test if a navigation item is well-defined.
+     *
+     * @param list The list that contains the navigation item.
+     * @param itemIndex The item's index in the list.
+     * @param itemText The text the item displays.
+     * @param itemURL The URL the item navigates to.
+     */
+    function testIfIsProperNavigationItem(list, itemIndex, itemText, itemURL) {
+        expect(list.childAt(itemIndex).is(NavigationItem)).toEqual(true);
+        expect(list.childAt(itemIndex).prop('name')).toEqual(itemText);
+        expect(list.childAt(itemIndex).prop('url')).toEqual(itemURL);
+    }
 
     test('Renders without crashing.', () => {
         const div = document.createElement('div');
@@ -61,20 +75,9 @@ describe('Navigation', () => {
 
         expect(wrapper.find(NavigationItem)).toHaveLength(4);
 
-        expect(listElement.childAt(0).is(NavigationItem)).toEqual(true);
-        expect(listElement.childAt(0).prop('name')).toEqual('Home');
-        expect(listElement.childAt(0).prop('url')).toEqual(requestsAndURLs.makeIndexURL());
-
-        expect(listElement.childAt(1).is(NavigationItem)).toEqual(true);
-        expect(listElement.childAt(1).prop('name')).toEqual('About');
-        expect(listElement.childAt(1).prop('url')).toEqual(requestsAndURLs.makeAboutURL());
-
-        expect(listElement.childAt(2).is(NavigationItem)).toEqual(true);
-        expect(listElement.childAt(2).prop('name')).toEqual('Posts');
-        expect(listElement.childAt(2).prop('url')).toEqual(requestsAndURLs.makePostsURL());
-
-        expect(listElement.childAt(3).is(NavigationItem)).toEqual(true);
-        expect(listElement.childAt(3).prop('name')).toEqual('Contact');
-        expect(listElement.childAt(3).prop('url')).toEqual(requestsAndURLs.makeContactUrl());
+        testIfIsProperNavigationItem(listElement, 0, 'Home', requestsAndURLs.makeIndexURL());
+        testIfIsProperNavigationItem(listElement, 1, 'About', requestsAndURLs.makeAboutURL());
+        testIfIsProperNavigationItem(listElement, 2, 'Posts', requestsAndURLs.makePostsURL());
+        testIfIsProperNavigationItem(listElement, 3, 'Contact', requestsAndURLs.makeContactUrl());
     });
 });

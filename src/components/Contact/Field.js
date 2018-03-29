@@ -3,31 +3,30 @@ import React from 'react';
 import './contact.css';
 
 const Field = (props) => {
+    const {errorText, isValid, name, type, value, valueChanged} = props;
     let inputElement;
 
-    if (props.type === 'BIG') {
-        inputElement = <textarea value={props.value} rows="6"
-                                 className={(props.isValid ?
-                                             "contact__formInput--big" : "contact__formInput--bigAndNotValid")}
-                                 onChange={(e) => props.valueChanged(e.target.value)} />;
+    if (type === 'BIG') {
+        inputElement = <textarea value={value} rows="6"
+                                 className={(isValid ? "contact__formInput--big" : "contact__formInput--bigAndNotValid")}
+                                 onChange={(e) => valueChanged(e.target.value)} />;
     } else {
-        inputElement = <input type="text" value={props.value}
-                              className={(props.isValid ?
-                                          "contact__formInput--small" : "contact__formInput--smallAndNotValid")}
-                              onChange={(e) => props.valueChanged(e.target.value)} />;
+        inputElement = <input type="text" value={value}
+                              className={(isValid ? "contact__formInput--small" : "contact__formInput--smallAndNotValid")}
+                              onChange={(e) => valueChanged(e.target.value)} />;
     }
 
-    const errorMessage = props.isValid ?
+    const errorMessage = isValid ?
                          null :
                          <small className="contact__formFieldError">
-                            <i className="fa fa-exclamation-triangle"/> {props.errorText}
+                            <i className="fa fa-exclamation-triangle"/> {errorText}
                          </small>;
 
 
     return (
         <div className="contact__formField">
-            <label className={(props.isValid ? "contact__formLabel" : "contact__formLabel--notValid")}>
-                {props.name}
+            <label className={(isValid ? "contact__formLabel" : "contact__formLabel--notValid")}>
+                {name}
             </label>
 
             {inputElement}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import NavigationItem from './NavigationItem';
 import './navigation.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 const Navigation = () => (
     <nav className="navbar">

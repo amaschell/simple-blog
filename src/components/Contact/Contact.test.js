@@ -6,17 +6,24 @@ import Contact from './Contact';
 import ContactForm from './ContactForm';
 import Field from './Field';
 import Feedback from './Feedback';
-import * as requests from "../../config/requestsAndURLs";
+import * as requests from "../../config/requestsUtility";
 
 describe('Contact', () => {
     const MockAdapter = require('axios-mock-adapter');
     const axios = require('axios');
 
-    function isValidEmptyField(wrapper, fieldIndex, hasInput, name) {
-        isValidField(wrapper, fieldIndex, hasInput, name, '');
-    }
+    const contactFormSubmitToMockMethodName = 'doFormSubmit';
 
-    function isValidField(wrapper, fieldIndex, hasInput, name, value) {
+    /**
+     * Helper method to define if a field is valid and contains a certain value.
+     *
+     * @param wrapper The wrapper inside where the field lives.
+     * @param fieldIndex The index of the field in the vertical display order.
+     * @param hasInput True if the field displays an input HTML element. False if it displays a textarea HTML element.
+     * @param name The name of the field.
+     * @param value The value that should be inside the field. Empty string as default value for empty fields.
+     */
+    function isValidField(wrapper, fieldIndex, hasInput, name, value = '') {
         const field = wrapper.find('form').childAt(fieldIndex);
 
         expect(field.type()).toEqual(Field);
@@ -24,34 +31,48 @@ describe('Contact', () => {
         expect(field.find('.contact__formLabel').text()).toMatch(name);
         // The correct input element is present.
         expect(field.find(hasInput ? 'input' : 'textarea').length).toEqual(1);
-        // No initial value!
+        // Contains correct value.
         expect(field.find((hasInput ? 'input' : 'textarea')).props().value).toEqual(value);
-        // Proper and valid CSS class!
+        // Proper and valid CSS class is set.
         expect(field.find(hasInput ? '.contact__formInput--small' : '.contact__formInput--big').length).toEqual(1);
-        // No error present.
+        // No error is present.
         expect(field.find('.contact__formFieldError').length).toEqual(0);
     }
 
+    /**
+     * Helper method to define if a field is invalid regardless of the set value.
+     *
+     * @param wrapper The wrapper inside where the field lives.
+     * @param fieldIndex The index of the field in the vertical display order.
+     * @param hasInput True if the field displays an input HTML element. False if it displays a textarea HTML element.
+     * @param name The name of the field.
+     */
     function isInvalidField(wrapper, fieldIndex, hasInput, name) {
         const field = wrapper.find('form').childAt(fieldIndex);
 
         expect(field.type()).toEqual(Field);
-        // Correct label with error style.
+        // Correct label with error style set.
         expect(field.find('.contact__formLabel--notValid').text()).toMatch(name);
         // The correct input element is present.
         expect(field.find(hasInput ? 'input' : 'textarea').length).toEqual(1);
-        // Invalid CSS class!
+        // The invalid CSS class is set for the input.
         expect(field.find(hasInput ? '.contact__formInput--smallAndNotValid' : '.contact__formInput--bigAndNotValid').length).toEqual(1);
-        // An error is present.
+        // The error label is present.
         expect(field.find('.contact__formFieldError').length).toEqual(1);
     }
 
+    /**
+     * Helper method to test if the given contact form is in its initial valid state. That means that all fields are visible,
+     * valid and that they contain no values.
+     *
+     * @param form The form to validate.
+     */
     function isInitiallyValid(form) {
         // All fields are initially valid.
-        isValidEmptyField(form, 0, true, 'Name');
-        isValidEmptyField(form, 1, true, 'E-mail');
-        isValidEmptyField(form, 2, true, 'Subject');
-        isValidEmptyField(form, 3, false, 'Message');
+        isValidField(form, 0, true, 'Name');
+        isValidField(form, 1, true, 'E-mail');
+        isValidField(form, 2, true, 'Subject');
+        isValidField(form, 3, false, 'Message');
 
         // No error or success messages displayed!
         expect(form.find(Feedback).length).toEqual(0);
@@ -71,6 +92,11 @@ describe('Contact', () => {
         });
     }
 
+    /**
+     * Helper method to simulate the click on the form's submit button.
+     *
+     * @param wrapper The wrapper inside which the submit button lives.
+     */
     function doClickOnSend(wrapper) {
         // Do the click on Send.
         wrapper.find('.contact__formSubmitButton').simulate('click');
@@ -119,7 +145,7 @@ describe('Contact', () => {
         expect(mountedField.find('.contact__formLabel').length).toEqual(1);
         expect(mountedField.find('.contact__formLabel').text()).toMatch(label);
 
-        // Has an input element as input element.
+        // Has an HTML input element as input element.
         expect(mountedField.find('input').length).toEqual(1);
         expect(mountedField.find('.contact__formInput--small').length).toEqual(1);
         expect(mountedField.find('input').props().value).toEqual(val);
@@ -170,7 +196,7 @@ describe('Contact', () => {
         expect(mountedField.find('.contact__formLabel').length).toEqual(1);
         expect(mountedField.find('.contact__formLabel').text()).toMatch(label);
 
-        // Has a textarea element as input element.
+        // Has a HTML textarea element as input element.
         expect(mountedField.find('textarea').length).toEqual(1);
         expect(mountedField.find('.contact__formInput--big').length).toEqual(1);
         expect(mountedField.find('textarea').props().value).toEqual(val);
@@ -214,49 +240,27 @@ describe('Contact', () => {
         // All fields are present and properly displayed.
         const fields = mounted.find(Field);
         expect(fields.length).toEqual(4);
-        isValidEmptyField(mounted, 0, true, 'Name');
-        isValidEmptyField(mounted, 1, true, 'E-mail');
-        isValidEmptyField(mounted, 2, true, 'Subject');
-        isValidEmptyField(mounted, 3, false, 'Message');
+        isInitiallyValid(mounted.find(ContactForm));
 
-        // No error or success messages displayed!
-        expect(mounted.find(Feedback).length).toEqual(0);
-
-        // The button is present.
+        // The submit button is present.
         const submitButton = mounted.find('button');
         expect(submitButton.length).toEqual(1);
         expect(submitButton.text()).toMatch('Send');
-
-        // Has correct state.
-        expect(mounted.find(ContactForm).instance().state).toEqual({
-            name: '',
-            email: '',
-            subject: '',
-            message: '',
-            nameIsValid: true,
-            emailIsValid: true,
-            subjectIsValid: true,
-            messageIsValid: true,
-            errorWhenSendingMessage: '',
-            messageHasBeenSent: false
-        });
     });
 
     test('Clicking on Send for empty contact form does invalidate the form and not send a request.', () => {
-        const mounted = mount(<Contact />);
+        const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
 
         isInitiallyValid(mounted.find(ContactForm));
-
         doClickOnSend(mounted);
 
-        // All fields are now invalid
+        // All fields are now invalid.
         isInvalidField(mounted, 0, true, 'Name');
         isInvalidField(mounted, 1, true, 'E-mail');
         isInvalidField(mounted, 2, true, 'Subject');
         isInvalidField(mounted, 3, false, 'Message');
-
-        // No error or success messages displayed as no POST request should have happened!
-        expect(mounted.find(Feedback).length).toEqual(0);
 
         // Has correct state.
         expect(mounted.find(ContactForm).instance().state).toEqual({
@@ -271,10 +275,23 @@ describe('Contact', () => {
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
+
+
+        // No error or success messages displayed as no POST request should have happened!
+        expect(mounted.find(Feedback).length).toEqual(0);
+
+        // The POST request should not have happened!
+        expect(formSubmitSpy).toHaveBeenCalledTimes(0);
+        // Reset the spy to not interfere with other methods!
+        formSubmitSpy.mockReset();
+        formSubmitSpy.mockRestore();
     });
 
     test('No name provided does invalidate field and not send request therefore.', () => {
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = '';
         const emailValue = 'abc@gmx.com';
         const subjectValue = 'Subject';
@@ -300,9 +317,6 @@ describe('Contact', () => {
         isValidField(mounted, 2, true, 'Subject', subjectValue);
         isValidField(mounted, 3, false, 'Message', messageValue);
 
-        // No error or success messages displayed as no POST request should have happened!
-        expect(mounted.find(Feedback).length).toEqual(0);
-
         // Has correct state.
         expect(mounted.instance().state).toEqual({
             name: nameValue,
@@ -316,10 +330,23 @@ describe('Contact', () => {
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
+
+
+        // No error or success messages displayed as no POST request should have happened!
+        expect(mounted.find(Feedback).length).toEqual(0);
+
+        // The POST request should not have happened!
+        expect(formSubmitSpy).toHaveBeenCalledTimes(0);
+        // Reset the spy to not interfere with other methods!
+        formSubmitSpy.mockReset();
+        formSubmitSpy.mockRestore();
     });
 
     test('Incorrect email provided does invalidate field and not send request therefore.', () => {
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = 'Name';
         const emailValue = 'abc.com';
         const subjectValue = 'Subject';
@@ -345,9 +372,6 @@ describe('Contact', () => {
         isValidField(mounted, 2, true, 'Subject', subjectValue);
         isValidField(mounted, 3, false, 'Message', messageValue);
 
-        // No error or success messages displayed as no POST request should have happened!
-        expect(mounted.find(Feedback).length).toEqual(0);
-
         // Has correct state.
         expect(mounted.instance().state).toEqual({
             name: nameValue,
@@ -361,10 +385,22 @@ describe('Contact', () => {
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
+
+        // No error or success messages displayed as no POST request should have happened!
+        expect(mounted.find(Feedback).length).toEqual(0);
+
+        // The POST request should not have happened!
+        expect(formSubmitSpy).toHaveBeenCalledTimes(0);
+        // Reset the spy to not interfere with other methods!
+        formSubmitSpy.mockReset();
+        formSubmitSpy.mockRestore();
     });
 
     test('No subject provided does invalidate field and not send request therefore.', () => {
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = 'Name';
         const emailValue = 'abc@gmx.com';
         const subjectValue = '';
@@ -390,9 +426,6 @@ describe('Contact', () => {
         isInvalidField(mounted, 2, true, 'Subject');
         isValidField(mounted, 3, false, 'Message', messageValue);
 
-        // No error or success messages displayed as no POST request should have happened!
-        expect(mounted.find(Feedback).length).toEqual(0);
-
         // Has correct state.
         expect(mounted.instance().state).toEqual({
             name: nameValue,
@@ -406,10 +439,22 @@ describe('Contact', () => {
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
+
+        // No error or success messages displayed as no POST request should have happened!
+        expect(mounted.find(Feedback).length).toEqual(0);
+
+        // The POST request should not have happened!
+        expect(formSubmitSpy).toHaveBeenCalledTimes(0);
+        // Reset the spy to not interfere with other methods!
+        formSubmitSpy.mockReset();
+        formSubmitSpy.mockRestore();
     });
 
     test('No message provided does invalidate field and not send request therefore.', () => {
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = 'Name';
         const emailValue = 'abc@gmx.com';
         const subjectValue = 'Subject';
@@ -435,9 +480,6 @@ describe('Contact', () => {
         isValidField(mounted, 2, true, 'Subject', subjectValue);
         isInvalidField(mounted, 3, false, 'Message');
 
-        // No error or success messages displayed as no POST request should have happened!
-        expect(mounted.find(Feedback).length).toEqual(0);
-
         // Has correct state.
         expect(mounted.instance().state).toEqual({
             name: nameValue,
@@ -451,12 +493,23 @@ describe('Contact', () => {
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
+
+        // No error or success messages displayed as no POST request should have happened!
+        expect(mounted.find(Feedback).length).toEqual(0);
+
+        // The POST request should not have happened!
+        expect(formSubmitSpy).toHaveBeenCalledTimes(0);
+        // Reset the spy to not interfere with other methods!
+        formSubmitSpy.mockReset();
+        formSubmitSpy.mockRestore();
     });
 
     test('Valid form gets submitted correctly, POST request succeeds on the server, ' +
          'form disappears and only success message is shown.', async (done) => {
-
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = 'Name';
         const emailValue = 'abc@gmx.com';
         const subjectValue = 'Subject';
@@ -474,6 +527,7 @@ describe('Contact', () => {
             }
         );
 
+        // Mock the POST network request.
         const mock = new MockAdapter(axios);
         mock.onPost(requests.makeRequestURL(requests.makeContactFormSubmitUrl())).reply(200);
 
@@ -489,6 +543,12 @@ describe('Contact', () => {
             expect(feedback.find('.contact__feedbackTitle').text()).toMatch('Yeeehaaa!');
             expect(feedback.find('.contact__feedbackMessage').text()).toMatch('Your message has been delivered successfully.');
 
+            // The POST request should have happened exactly once!
+            expect(formSubmitSpy).toHaveBeenCalledTimes(1);
+            // Reset the spy to not interfere with other methods!
+            formSubmitSpy.mockReset();
+            formSubmitSpy.mockRestore();
+
             done();
         });
     });
@@ -497,6 +557,9 @@ describe('Contact', () => {
          'the form and the provided input does not disappear and an error message is shown.', async (done) => {
 
         const mounted = mount(<ContactForm />);
+        // Mock the form submit request method.
+        const formSubmitSpy = jest.spyOn(mounted.instance(), contactFormSubmitToMockMethodName);
+
         const nameValue = 'Name';
         const emailValue = 'abc@gmx.com';
         const subjectValue = 'Subject';
@@ -515,6 +578,7 @@ describe('Contact', () => {
             }
         );
 
+        // Mock the POST network request.
         const mock = new MockAdapter(axios);
         mock.onPost(requests.makeRequestURL(requests.makeContactFormSubmitUrl())).reply(500, serverErrorText);
 
@@ -536,6 +600,12 @@ describe('Contact', () => {
             expect(feedback.find('.contact__feedback--failure').length).toEqual(1);
             expect(feedback.find('.contact__feedbackTitle').text()).toMatch('Your mail could not get sent due to an error!');
             expect(feedback.find('.contact__feedbackMessage').text()).toMatch(serverErrorText);
+
+            // The POST request should have happened exactly once!
+            expect(formSubmitSpy).toHaveBeenCalledTimes(1);
+            // Reset the spy to not interfere with other methods!
+            formSubmitSpy.mockReset();
+            formSubmitSpy.mockRestore();
 
             done();
         });

@@ -3,7 +3,7 @@ import React from 'react';
 import AbstractEntry from './AbstractEntry';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import '../Posts/posts.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 class Posts extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class Posts extends React.Component {
     }
 
     componentDidMount() {
+        // Return the promise here, so that the promise can get chained in the tests!
         return requestsAndURLs.getPosts()
             .then(res => {
                 this.setState({
@@ -32,13 +33,14 @@ class Posts extends React.Component {
     }
 
     renderPosts() {
+        const {hasError, posts} = this.state;
         let toBeRendered;
 
-        if (this.state.hasError) {
+        if (hasError) {
             // The promise was rejected by the server. Inform the user!
             toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
 
-        } else if (this.state.posts.length === 0) {
+        } else if (posts.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
             toBeRendered = <InfoMessage iconClass="em em-ghost" text="No posts seem to exist..."/>
@@ -47,7 +49,7 @@ class Posts extends React.Component {
             // We have a list of posts, simply display it.
             toBeRendered = <ul className="posts__list">
                             {
-                                this.state.posts.map( (post) => {
+                                posts.map( (post) => {
                                     return <AbstractEntry key={post.id} post={post} />
                                 })
                             }

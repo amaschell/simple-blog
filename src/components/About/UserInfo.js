@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './about.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 
 const UserInfo = (props) => {

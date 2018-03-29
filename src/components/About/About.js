@@ -3,7 +3,7 @@ import React from 'react';
 import UserInfo from "./UserInfo";
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './about.css';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 
 class About extends React.Component {
     constructor(props) {
@@ -16,6 +16,7 @@ class About extends React.Component {
     }
 
     componentDidMount() {
+        // Return the promise here, so that the promise can get chained in the tests!
         return requestsAndURLs.getAbout()
             .then(res => {
                 this.setState({
@@ -32,13 +33,14 @@ class About extends React.Component {
     }
 
     renderAuthors() {
+        const {hasError, users} = this.state;
         let toBeRendered;
 
-        if (this.state.hasError) {
+        if (hasError) {
             // The promise was rejected by the server. Inform the user!
             toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
 
-        } else if (this.state.users.length === 0) {
+        } else if (users.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
             toBeRendered = <InfoMessage iconClass="em em-ghost" text="No authors seem to exist..."/>
@@ -47,7 +49,7 @@ class About extends React.Component {
             // We have a list of authors, simply display it.
             toBeRendered =  <ul className="about__usersList">
                                 {
-                                    this.state.users.map( (user) => {
+                                    users.map( (user) => {
                                         return <UserInfo key={user.id} user={user} />
                                     })
                                 }

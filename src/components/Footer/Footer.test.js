@@ -16,7 +16,7 @@ describe('Footer', () => {
         ReactDOM.render(shallowWrapper, div);
     });
 
-    test('Renders a primarily a footer.', () => {
+    test('Renders primarily a footer.', () => {
         expect(shallowWrapper.type()).toEqual('footer');
     });
 

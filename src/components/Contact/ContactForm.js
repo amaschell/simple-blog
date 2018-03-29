@@ -3,7 +3,7 @@ import React from 'react';
 import Field from './Field';
 import Feedback from './Feedback';
 import * as utils from '../../utils/utils';
-import * as requestsAndURLs from "../../config/requestsAndURLs";
+import * as requestsAndURLs from "../../config/requestsUtility";
 import './contact.css';
 
 class ContactForm extends React.Component {
@@ -25,16 +25,17 @@ class ContactForm extends React.Component {
             messageHasBeenSent: false
         };
 
+        // Properly bind the this inside the click handler to this component.
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
-    handleChange(name, newValue) {
+    handleFieldChange(name, newValue) {
         this.setState({
             [name]: newValue,
         });
     }
 
-    formIsValid() {
+    isFormValid() {
         return this.state.nameIsValid && this.state.emailIsValid &&
                this.state.subjectIsValid && this.state.messageIsValid;
     }
@@ -51,6 +52,7 @@ class ContactForm extends React.Component {
     }
 
     doFormSubmit() {
+        // Return the promise here, so that the promise can get chained in the tests!
         return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
             .then(res => {
                 this.setState({
@@ -67,6 +69,8 @@ class ContactForm extends React.Component {
 
     validateAndTryToSubmitForm() {
         // Do the validation first, and then try to do the actual submit action!
+        // The setting of the state is wrapped into another promise so that this method (i.e. the actual submit action)
+        // can get tested more easily later.
         return new Promise((resolve, reject) => {
             this.setState(
                 {
@@ -77,7 +81,8 @@ class ContactForm extends React.Component {
                 },
 
                 async () => {
-                    if (this.formIsValid()) {
+                    if (this.isFormValid()) {
+                        // Do the actual request.
                         resolve(this.doFormSubmit());
                     } else {
                         reject("Form not valid!");
@@ -90,51 +95,58 @@ class ContactForm extends React.Component {
 
     handleButtonClick(e) {
         // Disable the default form submit, so that possible invalid fields are properly shown
-        // without clearing the form input.
+        // without clearing the form input even after the user clicked on the button. Otherwise the user loses
+        // all the input he has provided and that would lead to a very bad UX design.
         e.preventDefault();
 
         this.validateAndTryToSubmitForm()
             .catch((error) => {
-                // Swallow this error silently. This is for debugging purposes.
+                // Swallow any error here silently. This is for debugging purposes.
                 //console.log(error);
             });
 
-        // Stop propagation of the event. Only this button should trigger the request.
+        // Stop propagation of the event. Only this button should handle and trigger the request.
         return false;
     }
 
     render() {
+        const {
+            errorWhenSendingMessage, messageHasBeenSent,
+            email, message, name, subject,
+            emailIsValid, messageIsValid, nameIsValid, subjectIsValid
+        } = this.state;
+
         let renderedResult;
 
-        if (this.state.messageHasBeenSent) {
+        if (messageHasBeenSent) {
             renderedResult = <Feedback type="SUCCESS" title="Yeeehaaa!"
                                        message="Your message has been delivered successfully." />;
         } else {
             const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
             let errorMessage;
 
-            if (this.state.errorWhenSendingMessage) {
+            if (errorWhenSendingMessage) {
                 errorMessage = <Feedback type="ERROR" title="Your mail could not get sent due to an error!"
-                                         message={this.state.errorWhenSendingMessage} />;
+                                         message={errorWhenSendingMessage} />;
             }
 
             renderedResult =
                 <form className="contact__form">
-                    <Field type="SMALL" name="Name" value={this.state.name}
-                           valueChanged={this.handleChange.bind(this, 'name')}
-                           isValid={this.state.nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+                    <Field type="SMALL" name="Name" value={name}
+                           valueChanged={this.handleFieldChange.bind(this, 'name')}
+                           isValid={nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field type="SMALL" name="E-mail" value={this.state.email}
-                           valueChanged={this.handleChange.bind(this, 'email')}
-                           isValid={this.state.emailIsValid} errorText="This is not a valid e-mail address!" />
+                    <Field type="SMALL" name="E-mail" value={email}
+                           valueChanged={this.handleFieldChange.bind(this, 'email')}
+                           isValid={emailIsValid} errorText="This is not a valid e-mail address!" />
 
-                    <Field type="SMALL" name="Subject" value={this.state.subject}
-                           valueChanged={this.handleChange.bind(this, 'subject')}
-                           isValid={this.state.subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+                    <Field type="SMALL" name="Subject" value={subject}
+                           valueChanged={this.handleFieldChange.bind(this, 'subject')}
+                           isValid={subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field type="BIG"  name="Message" value={this.state.message}
-                           valueChanged={this.handleChange.bind(this, 'message')}
-                           isValid={this.state.messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
+                    <Field type="BIG"  name="Message" value={message}
+                           valueChanged={this.handleFieldChange.bind(this, 'message')}
+                           isValid={messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
                     {errorMessage}
 
