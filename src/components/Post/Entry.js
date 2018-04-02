@@ -8,14 +8,14 @@ const Entry = (props) => {
     const {author, date, title, content} = props.post;
 
     return (
-        <div className="post__entry">
-            <div className="post__date">{date}</div>
+        <article className="post__entry">
+            <time className="post__date">{date}</time>
             <h2 className="post__title">{title}</h2>
             <div className="post__author">
                 by <Link to={requestsAndURLs.makeAboutURL()} className="post__authorLink">{author}</Link>
             </div>
             <p className="post__content">{content}</p>
-        </div>
+        </article>
 
     );
 };

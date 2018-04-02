@@ -24,7 +24,7 @@ class About extends React.Component {
                     hasError: false
                 })
             })
-            .catch((error) => {
+            .catch(error => {
                 this.setState({
                     posts: [],
                     hasError: true

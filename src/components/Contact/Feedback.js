@@ -32,7 +32,7 @@ class Feedback extends React.Component {
                  ref={(node) => { this.divToFocus = node; }}>
 
                 <h3 className='contact__feedbackTitle'>{title}</h3>
-                <div className='contact__feedbackMessage'>{message}</div>
+                <p className='contact__feedbackMessage'>{message}</p>
             </div>
         );
     }
