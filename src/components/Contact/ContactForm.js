@@ -119,32 +119,34 @@ class ContactForm extends React.Component {
         let renderedResult;
 
         if (messageHasBeenSent) {
-            renderedResult = <Feedback type="SUCCESS" title="Yeeehaaa!"
+            renderedResult = <Feedback type={Feedback.Types.SUCCESS}
+                                       title="Yeeehaaa!"
                                        message="Your message has been delivered successfully." />;
         } else {
             const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
             let errorMessage;
 
             if (errorWhenSendingMessage) {
-                errorMessage = <Feedback type="ERROR" title="Your mail could not get sent due to an error!"
+                errorMessage = <Feedback type={Feedback.Types.FAILURE}
+                                         title="Your mail could not get sent due to an error!"
                                          message={errorWhenSendingMessage} />;
             }
 
             renderedResult =
                 <form className="contact__form">
-                    <Field type="SMALL" name="Name" value={name}
+                    <Field size={Field.Sizes.SMALL} name="Name" value={name}
                            valueChanged={this.handleFieldChange.bind(this, 'name')}
                            isValid={nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field type="SMALL" name="E-mail" value={email}
+                    <Field size={Field.Sizes.SMALL} name="E-mail" value={email}
                            valueChanged={this.handleFieldChange.bind(this, 'email')}
                            isValid={emailIsValid} errorText="This is not a valid e-mail address!" />
 
-                    <Field type="SMALL" name="Subject" value={subject}
+                    <Field size={Field.Sizes.SMALL} name="Subject" value={subject}
                            valueChanged={this.handleFieldChange.bind(this, 'subject')}
                            isValid={subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field type="BIG"  name="Message" value={message}
+                    <Field size={Field.Sizes.LARGE}  name="Message" value={message}
                            valueChanged={this.handleFieldChange.bind(this, 'message')}
                            isValid={messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 

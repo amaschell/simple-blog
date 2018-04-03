@@ -52,7 +52,7 @@
     margin-right: 0.3em;
 }
 
-.contact__formInput--big {
+.contact__formInput--large {
     display: block;
     border: 1px solid dimgray;
     -moz-border-radius: 0.3em;
@@ -62,7 +62,7 @@
     color: black;
 }
 
-.contact__formInput--bigAndNotValid {
+.contact__formInput--largeAndNotValid {
     display: block;
     border: 1px solid #d43a3a;
     -moz-border-radius: 0.3em;
@@ -72,8 +72,8 @@
     color: black;
 }
 
-.contact__formInput--big:focus, .contact__formInput--big:active,
-.contact__formInput--bigAndNotValid:focus, .contact__formInput--bigAndNotValid:active {
+.contact__formInput--large:focus, .contact__formInput--large:active,
+.contact__formInput--largeAndNotValid:focus, .contact__formInput--largeAndNotValid:active {
     background-color: rgba(0, 100, 0, 0.02);
 }
 
@@ -165,7 +165,7 @@
         font-size: 0.8em;
     }
 
-    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+    .contact__formInput--large, .contact__formInput--largeAndNotValid {
         margin-top: 0.4em;
         margin-bottom: 0.4em;
         font-size: 0.8em;
@@ -230,7 +230,7 @@
         font-size: 0.9em;
     }
 
-    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+    .contact__formInput--large, .contact__formInput--largeAndNotValid {
         margin-top: 0.4em;
         margin-bottom: 0.3em;
         font-size: 1em;
@@ -298,7 +298,7 @@
         font-size: 1em;
     }
 
-    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+    .contact__formInput--large, .contact__formInput--largeAndNotValid {
         margin-top: 0.4em;
         margin-bottom: 0.5em;
         font-size: 1em;
@@ -363,7 +363,7 @@
         font-size: 1em;
     }
 
-    .contact__formInput--big, .contact__formInput--bigAndNotValid {
+    .contact__formInput--large, .contact__formInput--largeAndNotValid {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
         font-size: 1em;

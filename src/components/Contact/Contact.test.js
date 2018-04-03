@@ -34,7 +34,7 @@ describe('Contact', () => {
         // Contains correct value.
         expect(field.find((hasInput ? 'input' : 'textarea')).props().value).toEqual(value);
         // Proper and valid CSS class is set.
-        expect(field.find(hasInput ? '.contact__formInput--small' : '.contact__formInput--big').length).toEqual(1);
+        expect(field.find(hasInput ? '.contact__formInput--small' : '.contact__formInput--large').length).toEqual(1);
         // No error is present.
         expect(field.find('.contact__formFieldError').length).toEqual(0);
     }
@@ -56,14 +56,16 @@ describe('Contact', () => {
         // The correct input element is present.
         expect(field.find(hasInput ? 'input' : 'textarea').length).toEqual(1);
         // The invalid CSS class is set for the input.
-        expect(field.find(hasInput ? '.contact__formInput--smallAndNotValid' : '.contact__formInput--bigAndNotValid').length).toEqual(1);
+        expect(field.find(
+            hasInput ? '.contact__formInput--smallAndNotValid' : '.contact__formInput--largeAndNotValid').length
+        ).toEqual(1);
         // The error label is present.
         expect(field.find('.contact__formFieldError').length).toEqual(1);
     }
 
     /**
-     * Helper method to test if the given contact form is in its initial valid state. That means that all fields are visible,
-     * valid and that they contain no values.
+     * Helper method to test if the given contact form is in its initial valid state. That means that all fields
+     * are visible, valid and that they contain no values.
      *
      * @param form The form to validate.
      */
@@ -111,7 +113,9 @@ describe('Contact', () => {
     test('Feedback sub-component displays success message correctly.', () => {
         const successTitle = "Success Title";
         const successMessage = "Success Message";
-        const mountedFeedback = mount(<Feedback type="SUCCESS" title={successTitle} message={successMessage}/>);
+        const mountedFeedback = mount(
+            <Feedback type={Feedback.Types.SUCCESS} title={successTitle} message={successMessage}/>
+        );
 
         expect(mountedFeedback.find('.contact__feedback--success').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedbackTitle').text()).toMatch(successTitle);
@@ -121,7 +125,9 @@ describe('Contact', () => {
     test('Feedback sub-component displays error message correctly.', () => {
         const errorTitle = "Error Title";
         const errorMessage = "Error Message";
-        const mountedFeedback = mount(<Feedback type="ERROR" title={errorTitle} message={errorMessage}/>);
+        const mountedFeedback = mount(
+            <Feedback type={Feedback.Types.FAILURE} title={errorTitle} message={errorMessage}/>
+        );
 
         expect(mountedFeedback.find('.contact__feedback--failure').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedbackTitle').text()).toMatch(errorTitle);
@@ -136,7 +142,8 @@ describe('Contact', () => {
         function dummyFunction() {}
 
         const mountedField = mount(
-            <Field type="SMALL" name={label} value={val} valueChanged={dummyFunction} isValid={true} errorText={eText}/>
+            <Field size={Field.Sizes.SMALL} name={label} value={val} valueChanged={dummyFunction}
+                   isValid={true} errorText={eText} />
         );
 
         // Contains only the label and the input.
@@ -159,7 +166,8 @@ describe('Contact', () => {
         function dummyFunction() {}
 
         const mountedField = mount(
-            <Field type="SMALL" name={label} value={val} valueChanged={dummyFunction} isValid={false} errorText={eText}/>
+            <Field size={Field.Sizes.SMALL} name={label} value={val} valueChanged={dummyFunction}
+                   isValid={false} errorText={eText} />
         );
 
         // Contains the label, the input and an error message.
@@ -179,7 +187,7 @@ describe('Contact', () => {
         expect(mountedField.find('.contact__formFieldError').text()).toMatch(eText);
     });
 
-    test('Valid big Field sub-component displays correctly.', () => {
+    test('Valid large Field sub-component displays correctly.', () => {
         const label = "Test Label";
         const val = "";
         const eText = "Error Text";
@@ -187,7 +195,8 @@ describe('Contact', () => {
         function dummyFunction() {}
 
         const mountedField = mount(
-            <Field type="BIG" name={label} value={val} valueChanged={dummyFunction} isValid={true} errorText={eText}/>
+            <Field size={Field.Sizes.LARGE} name={label} value={val} valueChanged={dummyFunction}
+                   isValid={true} errorText={eText} />
         );
 
         // Contains only the label and the input.
@@ -198,11 +207,11 @@ describe('Contact', () => {
 
         // Has a HTML textarea element as input element.
         expect(mountedField.find('textarea').length).toEqual(1);
-        expect(mountedField.find('.contact__formInput--big').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--large').length).toEqual(1);
         expect(mountedField.find('textarea').props().value).toEqual(val);
     });
 
-    test('Invalid big Field sub-component displays correctly.', () => {
+    test('Invalid large Field sub-component displays correctly.', () => {
         const label = "Test Label";
         const val = "Invalid";
         const eText = "Error Text";
@@ -210,7 +219,8 @@ describe('Contact', () => {
         function dummyFunction() {}
 
         const mountedField = mount(
-            <Field type="BIG" name={label} value={val} valueChanged={dummyFunction} isValid={false} errorText={eText}/>
+            <Field size={Field.Sizes.LARGE} name={label} value={val} valueChanged={dummyFunction}
+                   isValid={false} errorText={eText} />
         );
 
         // Contains the label, the input and an error message.
@@ -222,7 +232,7 @@ describe('Contact', () => {
 
         expect(mountedField.find('textarea').length).toEqual(1);
         // The textarea element has the proper "not-valid" class.
-        expect(mountedField.find('.contact__formInput--bigAndNotValid').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--largeAndNotValid').length).toEqual(1);
         expect(mountedField.find('textarea').props().value).toEqual(val);
 
         // The field error is present.
