@@ -4,14 +4,23 @@ import {BrowserRouter, MemoryRouter} from 'react-router-dom';
 import {mount} from 'enzyme';
 
 import App from './App';
-import Header from "../Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
+import Header from '../Header/Header';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
+import * as requests from '../../config/requestsUtility';
 
 describe('App', () => {
-    let mountedWrapper;
+    let mountedWrapper, mock;
+
+    const MockAdapter = require('axios-mock-adapter');
+    const axios = require('axios');
 
     beforeEach(() => {
+        // As we mount the App component and as the Home component (The index) makes a GET request to
+        // fetch the latest post when itself mounts, we need to mock this particular request each time.
+        mock = new MockAdapter(axios);
+        mock.onGet(requests.makeRequestURL(requests.makeIndexURL())).reply(200, {});
+
         // We need to wrap the component inside a router here because the App component uses react-router-dom's
         // BrowserRouter component and needs therefore a router context.
         mountedWrapper = mount(

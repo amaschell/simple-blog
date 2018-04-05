@@ -3,7 +3,7 @@ import React from 'react';
 import AbstractEntry from './AbstractEntry';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import '../Posts/posts.css';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 
 class Posts extends React.Component {
     constructor(props) {
@@ -22,13 +22,13 @@ class Posts extends React.Component {
                 this.setState({
                     posts: res.data,
                     hasError: false
-                })
+                });
             })
-            .catch((error) => {
+            .catch(error => {
                 this.setState({
                     posts: [],
                     hasError: true
-                })
+                });
             });
     }
 
@@ -38,19 +38,19 @@ class Posts extends React.Component {
 
         if (hasError) {
             // The promise was rejected by the server. Inform the user!
-            toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
+            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
 
         } else if (posts.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
-            toBeRendered = <InfoMessage iconClass="em em-ghost" text="No posts seem to exist..."/>
+            toBeRendered = <InfoMessage iconClass='em em-ghost' text='No posts seem to exist...'/>;
 
         } else {
             // We have a list of posts, simply display it.
-            toBeRendered = <ul className="posts__list">
+            toBeRendered = <ul className='posts__list'>
                             {
                                 posts.map( (post) => {
-                                    return <AbstractEntry key={post.id} post={post} />
+                                    return <AbstractEntry key={post.id} post={post} />;
                                 })
                             }
                             </ul>;
@@ -61,10 +61,12 @@ class Posts extends React.Component {
     }
 
     render() {
-        return <nav className="posts">
-            <h1 className="posts__mainTitle">All posts</h1>
-            { this.renderPosts() }
-        </nav>;
+        return (
+            <nav className='posts'>
+                <h1 className='posts__mainTitle'>All posts</h1>
+                { this.renderPosts() }
+            </nav>
+        );
     }
 }
 

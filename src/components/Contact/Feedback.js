@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './contact.css';
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
 
 class Feedback extends React.Component {
     constructor(props) {
@@ -28,7 +28,7 @@ class Feedback extends React.Component {
         const {message, title, type} = this.props;
 
         return (
-            <div tabIndex="-1"
+            <div tabIndex='-1'
                  className={(type === Types.SUCCESS ? 'contact__feedback--success' : 'contact__feedback--failure')}
                  ref={(node) => { this.divToFocus = node; }}>
 
@@ -42,8 +42,8 @@ class Feedback extends React.Component {
 // Introduce a kind of Enum (with immutable values) for the allowed types of feedback.
 // By using this logic, "magic strings" are getting avoided.
 const Types = Object.freeze({
-    SUCCESS: "SUCCESS",
-    FAILURE: "FAILURE"
+    SUCCESS: 'SUCCESS',
+    FAILURE: 'FAILURE'
 });
 
 // Extra type check for development mode.

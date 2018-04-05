@@ -4,7 +4,7 @@ import {MemoryRouter} from 'react-router-dom';
 import {mount} from 'enzyme';
 
 import Header from './Header';
-import Navigation from "../Navigation/Navigation";
+import Navigation from '../Navigation/Navigation';
 
 describe('Header', () => {
     let wrapper;

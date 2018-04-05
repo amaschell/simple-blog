@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'HeaderFont';
-    src: url(../../fonts/Journal/journal.ttf) format('truetype');
+    src: url('../../fonts/Journal/journal.ttf') format('truetype');
 }
 
 .header {

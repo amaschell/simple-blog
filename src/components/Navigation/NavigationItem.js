@@ -4,8 +4,8 @@ import {Link} from 'react-router-dom'
 import '../Header/header.css';
 
 const NavigationItem = (props) => (
-    <li className="navbar__item">
-        <Link to={props.url} className="navbar__link">{props.name}</Link>
+    <li className='navigation__item'>
+        <Link to={props.url} className='navigation__link'>{props.name}</Link>
     </li>
 );
 

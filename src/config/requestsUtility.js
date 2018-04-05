@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 
 /*
     All routes and URL's that exist for this application. The base URL is absolute, all the others are relative.
@@ -10,8 +10,8 @@ const ABOUT_URL = '/about';
 const POSTS_URL = '/posts';
 const POST_URL = '/posts/:slug';
 const CONTACT_URL = '/contact';
-const IMAGES_URL = "/images";
-const POST_CONTACT_FORM_URL = "/send-contact-mail";
+const IMAGES_URL = '/images';
+const POST_CONTACT_FORM_URL = '/send-contact-mail';
 
 
 /*
@@ -78,5 +78,5 @@ export function getPost(slug) {
 }
 
 export function postContactForm(data) {
-    return axios.post(makeRequestURL(makeContactFormSubmitUrl()), data)
+    return axios.post(makeRequestURL(makeContactFormSubmitUrl()), data);
 }

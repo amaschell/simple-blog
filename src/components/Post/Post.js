@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import Entry from './Entry';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './post.css';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 
 class Post extends React.Component {
     constructor(props) {
@@ -13,7 +13,7 @@ class Post extends React.Component {
         this.state = {
             post: null,
             hasGeneralServerError: false
-        }
+        };
     }
 
     componentDidMount() {
@@ -46,11 +46,11 @@ class Post extends React.Component {
 
         if (hasGeneralServerError) {
             // The promise was rejected by the server because of a specific error.
-            toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>
+            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
 
         } else if (!post) {
             // The promise was resolved but the post was not found (404).
-            toBeRendered = <InfoMessage iconClass="em em-ghost" text="This post does not seem to exist..."/>
+            toBeRendered = <InfoMessage iconClass='em em-ghost' text='This post does not seem to exist...'/>;
 
         } else {
             // The post does exist, simply display it.
@@ -62,9 +62,9 @@ class Post extends React.Component {
 
     render() {
         return (
-            <div className="post">
-                <nav className="post__backNavigation">
-                    <Link to={requestsAndURLs.makePostsURL()} className="post__backToPostsLink">&larr; Back to posts</Link>
+            <div className='post'>
+                <nav className='post__backNavigation'>
+                    <Link to={requestsAndURLs.makePostsURL()} className='post__backToPostsLink'>&larr; Back to posts</Link>
                 </nav>
 
                 { this.renderPost() }

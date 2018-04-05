@@ -1,13 +1,13 @@
 @font-face {
     font-family: 'NavFont';
-    src: url(../../fonts/architects-daughter/ArchitectsDaughter.ttf) format('truetype');
+    src: url('../../fonts/architects-daughter/ArchitectsDaughter.ttf') format('truetype');
 }
 
-.navbar {
+.navigation {
     font-size: 1em;
 }
 
-.navbar__link {
+.navigation__link {
     color: #8191a7;
     font-weight: bold;
     text-decoration: underline;
@@ -15,71 +15,71 @@
 }
 
 
-.navbar__list {
+.navigation__list {
     text-align: center;
     -webkit-padding-start: 0;
 }
 
 @media (max-width: 400px) {
-    .navbar__item {
+    .navigation__item {
         display: inline-block;
         margin-bottom: 1em;
         margin-right: 1em;
         margin-left: 1em;
     }
 
-    .navbar__link {
+    .navigation__link {
         font-size: 0.9em;
     }
 }
 
 @media (min-width: 401px) and (max-width: 600px) {
-    .navbar {
+    .navigation {
         margin-top: 2em;
     }
 
-    .navbar__item {
+    .navigation__item {
         display: inline-block;
         margin-bottom: 1em;
         margin-left: 1em;
         margin-right: 1em;
     }
 
-    .navbar__link {
+    .navigation__link {
         font-size: 1em;
     }
 }
 
 @media (min-width: 601px) and (max-width: 899px) {
-    .navbar {
+    .navigation {
         margin-top: 2.5em;
     }
 
-    .navbar__item {
+    .navigation__item {
         display: inline-block;
         margin-bottom: 1em;
         margin-left: 1.5em;
         margin-right: 1.5em;
     }
 
-    .navbar__link {
+    .navigation__link {
         font-size: 1.1em;
     }
 }
 
 @media (min-width: 900px) {
-    .navbar {
+    .navigation {
         margin-top: 3em;
     }
 
-    .navbar__item {
+    .navigation__item {
         display: inline-block;
         margin-bottom: 1em;
         margin-left: 2em;
         margin-right: 2em;
     }
 
-    .navbar__link {
+    .navigation__link {
         font-size: 1.3em;
     }
 }

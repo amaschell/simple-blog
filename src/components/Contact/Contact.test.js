@@ -6,7 +6,7 @@ import Contact from './Contact';
 import ContactForm from './ContactForm';
 import Field from './Field';
 import Feedback from './Feedback';
-import * as requests from "../../config/requestsUtility";
+import * as requests from '../../config/requestsUtility';
 
 describe('Contact', () => {
     const MockAdapter = require('axios-mock-adapter');
@@ -111,8 +111,8 @@ describe('Contact', () => {
     });
 
     test('Feedback sub-component displays success message correctly.', () => {
-        const successTitle = "Success Title";
-        const successMessage = "Success Message";
+        const successTitle = 'Success Title';
+        const successMessage = 'Success Message';
         const mountedFeedback = mount(
             <Feedback type={Feedback.Types.SUCCESS} title={successTitle} message={successMessage}/>
         );
@@ -123,8 +123,8 @@ describe('Contact', () => {
     });
 
     test('Feedback sub-component displays error message correctly.', () => {
-        const errorTitle = "Error Title";
-        const errorMessage = "Error Message";
+        const errorTitle = 'Error Title';
+        const errorMessage = 'Error Message';
         const mountedFeedback = mount(
             <Feedback type={Feedback.Types.FAILURE} title={errorTitle} message={errorMessage}/>
         );
@@ -135,9 +135,9 @@ describe('Contact', () => {
     });
 
     test('Valid small Field sub-component displays correctly.', () => {
-        const label = "Test Label";
-        const val = "";
-        const eText = "Error Text";
+        const label = 'Test Label';
+        const val = '';
+        const eText = 'Error Text';
 
         function dummyFunction() {}
 
@@ -159,9 +159,9 @@ describe('Contact', () => {
     });
 
     test('Invalid small Field sub-component displays correctly.', () => {
-        const label = "Test Label";
-        const val = "Invalid";
-        const eText = "Error Text";
+        const label = 'Test Label';
+        const val = 'Invalid';
+        const eText = 'Error Text';
 
         function dummyFunction() {}
 
@@ -188,9 +188,9 @@ describe('Contact', () => {
     });
 
     test('Valid large Field sub-component displays correctly.', () => {
-        const label = "Test Label";
-        const val = "";
-        const eText = "Error Text";
+        const label = 'Test Label';
+        const val = '';
+        const eText = 'Error Text';
 
         function dummyFunction() {}
 
@@ -212,9 +212,9 @@ describe('Contact', () => {
     });
 
     test('Invalid large Field sub-component displays correctly.', () => {
-        const label = "Test Label";
-        const val = "Invalid";
-        const eText = "Error Text";
+        const label = 'Test Label';
+        const val = 'Invalid';
+        const eText = 'Error Text';
 
         function dummyFunction() {}
 

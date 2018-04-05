@@ -21,19 +21,19 @@ describe('Footer', () => {
     });
 
     test('Displays the correct current year.', () => {
-        const content = shallowWrapper.find(".footer__content");
+        const content = shallowWrapper.find('.footer__content');
         const currentYear = new Date().getFullYear();
         expect(content.text()).toMatch(currentYear.toString());
     });
 
     test('Displays the author\'s correct name.', () => {
-        const content = shallowWrapper.find(".footer__content");
-        const authorName = "Amadeus Schell";
+        const content = shallowWrapper.find('.footer__content');
+        const authorName = 'Amadeus Schell';
         expect(content.text()).toMatch(authorName);
     });
 
     test('Displays the author\'s email address with a proper link.', () => {
-        const linkElement = shallowWrapper.find(".footer__email");
+        const linkElement = shallowWrapper.find('.footer__email');
 
         expect(linkElement.type()).toEqual('a');
         expect(linkElement.text()).toEqual('ama.schell7@gmail.com');

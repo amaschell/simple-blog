@@ -3,7 +3,7 @@ import React from 'react';
 import Field from './Field';
 import Feedback from './Feedback';
 import * as utils from '../../utils/utils';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 import './contact.css';
 
 class ContactForm extends React.Component {
@@ -57,13 +57,13 @@ class ContactForm extends React.Component {
             .then(res => {
                 this.setState({
                     messageHasBeenSent: true
-                })
+                });
             })
-            .catch((error) => {
+            .catch(error => {
                 this.setState({
                     messageHasBeenSent: false,
                     errorWhenSendingMessage: error.response.data
-                })
+                });
             });
     }
 
@@ -85,7 +85,7 @@ class ContactForm extends React.Component {
                         // Do the actual request.
                         resolve(this.doFormSubmit());
                     } else {
-                        reject("Form not valid!");
+                        reject('Form not valid!');
                     }
 
                 }
@@ -100,7 +100,7 @@ class ContactForm extends React.Component {
         e.preventDefault();
 
         this.validateAndTryToSubmitForm()
-            .catch((error) => {
+            .catch(error => {
                 // Swallow any error here silently. This is for debugging purposes.
                 //console.log(error);
             });
@@ -120,40 +120,40 @@ class ContactForm extends React.Component {
 
         if (messageHasBeenSent) {
             renderedResult = <Feedback type={Feedback.Types.SUCCESS}
-                                       title="Yeeehaaa!"
-                                       message="Your message has been delivered successfully." />;
+                                       title='Yeeehaaa!'
+                                       message='Your message has been delivered successfully.' />;
         } else {
-            const fieldCanNotBeEmptyValidationText = "This field can not be empty!";
+            const fieldCanNotBeEmptyValidationText = 'This field can not be empty!';
             let errorMessage;
 
             if (errorWhenSendingMessage) {
                 errorMessage = <Feedback type={Feedback.Types.FAILURE}
-                                         title="Your mail could not get sent due to an error!"
+                                         title='Your mail could not get sent due to an error!'
                                          message={errorWhenSendingMessage} />;
             }
 
             renderedResult =
-                <form className="contact__form">
-                    <Field size={Field.Sizes.SMALL} name="Name" value={name}
+                <form className='contact__form'>
+                    <Field size={Field.Sizes.SMALL} name='Name' value={name}
                            valueChanged={this.handleFieldChange.bind(this, 'name')}
                            isValid={nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field size={Field.Sizes.SMALL} name="E-mail" value={email}
+                    <Field size={Field.Sizes.SMALL} name='E-mail' value={email}
                            valueChanged={this.handleFieldChange.bind(this, 'email')}
-                           isValid={emailIsValid} errorText="This is not a valid e-mail address!" />
+                           isValid={emailIsValid} errorText='This is not a valid e-mail address!' />
 
-                    <Field size={Field.Sizes.SMALL} name="Subject" value={subject}
+                    <Field size={Field.Sizes.SMALL} name='Subject' value={subject}
                            valueChanged={this.handleFieldChange.bind(this, 'subject')}
                            isValid={subjectIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
-                    <Field size={Field.Sizes.LARGE}  name="Message" value={message}
+                    <Field size={Field.Sizes.LARGE}  name='Message' value={message}
                            valueChanged={this.handleFieldChange.bind(this, 'message')}
                            isValid={messageIsValid} errorText={fieldCanNotBeEmptyValidationText} />
 
                     {errorMessage}
 
-                    <div className="contact__formSubmitButtonWrapper">
-                        <button type="submit" className="contact__formSubmitButton" onClick={this.handleButtonClick}>
+                    <div className='contact__formSubmitButtonWrapper'>
+                        <button type='submit' className='contact__formSubmitButton' onClick={this.handleButtonClick}>
                             Send
                         </button>
                     </div>

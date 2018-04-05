@@ -8,10 +8,10 @@ import Posts from '../Posts/Posts';
 import Post from '../Post/Post';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './main.css';
-import * as urls from "../../config/requestsUtility";
+import * as urls from '../../config/requestsUtility';
 
 const Main = () => (
-    <main className="main">
+    <main className='main'>
         <Switch>
             <Route exact path={urls.makeIndexURL()} component={Home}/>
             <Route path={urls.makeAboutURL()} component={About}/>
@@ -21,7 +21,7 @@ const Main = () => (
 
             { /* 404 Route if nothing else matches. */ }
             <Route render={
-                () => <InfoMessage title="404" text="Sorry, this page does not exist..." iconClass="em em-black_heart"/>
+                () => <InfoMessage title='404' text='Sorry, this page does not exist...' iconClass='em em-black_heart'/>
             }/>
         </Switch>
     </main>

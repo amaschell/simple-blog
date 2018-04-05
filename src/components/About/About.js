@@ -1,9 +1,9 @@
 import React from 'react';
 
-import UserInfo from "./UserInfo";
+import UserInfo from './UserInfo';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import './about.css';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 
 class About extends React.Component {
     constructor(props) {
@@ -22,13 +22,13 @@ class About extends React.Component {
                 this.setState({
                     users: res.data,
                     hasError: false
-                })
+                });
             })
             .catch(error => {
                 this.setState({
                     posts: [],
                     hasError: true
-                })
+                });
             });
     }
 
@@ -38,16 +38,16 @@ class About extends React.Component {
 
         if (hasError) {
             // The promise was rejected by the server. Inform the user!
-            toBeRendered = <InfoMessage iconClass="em em-no_entry" text="Could not get proper response from server"/>;
+            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
 
         } else if (users.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
-            toBeRendered = <InfoMessage iconClass="em em-ghost" text="No authors seem to exist..."/>;
+            toBeRendered = <InfoMessage iconClass='em em-ghost' text='No authors seem to exist...'/>;
 
         } else {
             // We have a list of authors, simply display it.
-            toBeRendered =  <ul className="about__usersList">
+            toBeRendered =  <ul className='about__usersList'>
                                 {
                                     users.map( (user) => {
                                         return <UserInfo key={user.id} user={user} />;
@@ -58,12 +58,12 @@ class About extends React.Component {
         }
 
         return toBeRendered;
-    }
+    };
 
     render() {
         return (
-            <div className="about">
-                <h1 className="about__mainTitle">About the authors</h1>
+            <div className='about'>
+                <h1 className='about__mainTitle'>About the authors</h1>
                 { this.renderAuthors() }
             </div>
         );

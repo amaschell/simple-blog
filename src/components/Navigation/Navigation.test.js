@@ -5,7 +5,7 @@ import {mount} from 'enzyme';
 
 import Navigation from './Navigation';
 import NavigationItem from './NavigationItem';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 
 describe('Navigation', () => {
     let wrapper;
@@ -43,7 +43,7 @@ describe('Navigation', () => {
         // We need to wrap the component inside a router here because
         // it uses react router's Link component and needs therefore a proper routing context.
         const wrappedItem = mount(<MemoryRouter>
-                                    <NavigationItem url="url" name="name" />
+                                    <NavigationItem url='url' name='name' />
                                   </MemoryRouter>
         );
 
@@ -52,8 +52,8 @@ describe('Navigation', () => {
     });
 
     test('NavigationItem component displays a Link component and displays its passed down props correctly.', () => {
-        const testURL = "/test-url";
-        const testName = "testName";
+        const testURL = '/test-url';
+        const testName = 'testName';
 
 
         // We need to wrap the component inside a router here because
@@ -71,7 +71,7 @@ describe('Navigation', () => {
     });
 
     test('Renders 4 NavigationItem\'s in correct order with correct names and URLs.', () => {
-        const listElement =  wrapper.find('.navbar__list');
+        const listElement =  wrapper.find('.navigation__list');
 
         expect(wrapper.find(NavigationItem)).toHaveLength(4);
 

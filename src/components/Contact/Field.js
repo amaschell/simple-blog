@@ -8,25 +8,25 @@ const Field = (props) => {
     let inputElement;
 
     if (size === Sizes.LARGE) {
-        inputElement = <textarea value={value} rows="6"
-                                 className={(isValid ? "contact__formInput--large" : "contact__formInput--largeAndNotValid")}
+        inputElement = <textarea value={value} rows='6'
+                                 className={(isValid ? 'contact__formInput--large' : 'contact__formInput--largeAndNotValid')}
                                  onChange={(e) => valueChanged(e.target.value)} />;
     } else {
-        inputElement = <input type="text" value={value}
-                              className={(isValid ? "contact__formInput--small" : "contact__formInput--smallAndNotValid")}
+        inputElement = <input type='text' value={value}
+                              className={(isValid ? 'contact__formInput--small' : 'contact__formInput--smallAndNotValid')}
                               onChange={(e) => valueChanged(e.target.value)} />;
     }
 
     const errorMessage = isValid ?
                          null :
-                         <small className="contact__formFieldError">
-                            <i className="fa fa-exclamation-triangle"/> {errorText}
+                         <small className='contact__formFieldError'>
+                            <i className='fa fa-exclamation-triangle'/> {errorText}
                          </small>;
 
 
     return (
-        <div className="contact__formField">
-            <label className={(isValid ? "contact__formLabel" : "contact__formLabel--notValid")}>
+        <div className='contact__formField'>
+            <label className={(isValid ? 'contact__formLabel' : 'contact__formLabel--notValid')}>
                 {name}
             </label>
 
@@ -41,8 +41,8 @@ const Field = (props) => {
 // Introduce a kind of Enum (with immutable values) for the allowed sizes of a field.
 // By using this logic, "magic strings" are getting avoided.
 const Sizes = Object.freeze({
-    LARGE: "LARGE",
-    SMALL: "SMALL"
+    LARGE: 'LARGE',
+    SMALL: 'SMALL'
 });
 
 // Extra type check for development mode.

@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import {Link, MemoryRouter} from 'react-router-dom';
 import {mount} from 'enzyme';
 
 import * as requests from '../../config/requestsUtility';
 import mockedPosts from '../../__mocks__/postsMock.json';
 
-import Posts from "./Posts";
-import AbstractEntry from "./AbstractEntry";
+import Posts from './Posts';
+import AbstractEntry from './AbstractEntry';
 import InfoMessage from '../InfoMessage/InfoMessage';
 
 describe('Posts', () => {

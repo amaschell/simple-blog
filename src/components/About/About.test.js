@@ -1,13 +1,13 @@
 import React from 'react';
-import ReactDOM from "react-dom";
+import ReactDOM from 'react-dom';
 import {mount, shallow} from 'enzyme';
 
 import * as requests from '../../config/requestsUtility';
 import mockedUsers from '../../__mocks__/usersMock.json';
 
 import About from './About';
-import UserInfo from "./UserInfo";
-import InfoMessage from "../InfoMessage/InfoMessage";
+import UserInfo from './UserInfo';
+import InfoMessage from '../InfoMessage/InfoMessage';
 
 
 describe('About', () => {
