@@ -61,6 +61,10 @@ export function makeImageSourceURL(staticResource) {
 /*
     Requests that are performed inside the respective components.
  */
+export function getLatestPostForHome() {
+    return axios.get(makeRequestURL(makeIndexURL()));
+}
+
 export function getAbout() {
     return axios.get(makeRequestURL(makeAboutURL()));
 }

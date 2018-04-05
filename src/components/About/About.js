@@ -63,7 +63,7 @@ class About extends React.Component {
     render() {
         return (
             <div className="about">
-                <h1 className="about__mainTitle">About this blog</h1>
+                <h1 className="about__mainTitle">About the authors</h1>
                 { this.renderAuthors() }
             </div>
         );
