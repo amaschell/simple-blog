@@ -1,4 +1,14 @@
 /**
+ * Helper function to determine is a given object can be regarded as 'empty' or not.
+ *
+ * @param objectToEvaluate The given object.
+ * @returns {boolean} True if the given object is empty. False otherwise.
+ */
+export function isEmptyObject(objectToEvaluate) {
+    return Object.keys(objectToEvaluate).length === 0;
+}
+
+/**
  * Helper function to determine if a string value is really non-empty. Only whitespace strings
  * are also regarded as empty.
  *

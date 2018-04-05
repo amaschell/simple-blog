@@ -112,7 +112,7 @@ describe('Posts', () => {
             testIfAbstractEntryIsCorrectlyDisplayingItsContent(post3, 2);
 
             done();
-        })
+        });
     });
 
     test('Empty response from the server and rendering appropriate InfoMessage', async (done) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 
 import './home.css';
-import * as requestsAndURLs from "../../config/requestsUtility";
+import * as requestsAndURLs from '../../config/requestsUtility';
 
 const LatestPostPreview = (props) => {
     const {abstract, date, title, url} = props.latestPost;
