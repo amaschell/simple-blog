@@ -64,18 +64,22 @@ class Home extends React.Component {
                     <p className='home__presentationText'>
                         What started as a plain side project, is slowly turning into the next big thing, ladies and
                         gentlemen! This blog tries to be simple, yes. But it also tries to be not <em>that simple </em>
-                        so that one could regard it as boring or ugly. On the one hand refreshingly new and exciting.
+                        so that one could regard it as boring or ugly.
+                        <br/><br/>
+                        On the one hand refreshingly new and exciting.
                         And on the other hand exceedingly familiar and convenient.<br/>
                         But most notably: <b>It is simply a blog!</b>
                         <br/><br/>
                         <em className='home__finalPresentationPhrase'>
-                            One blog to rule them all, one blog to find them, one blog to bring them all and in
-                            the simplicity bind them!
+                            "One blog to rule them all, one blog to find them, one blog to bring them all and in
+                            the simplicity bind them!"
                         </em>
                     </p>
                 </section>
 
-                {this.renderLatestPostIfExisting()}
+                <section className='home__latestPostSection'>
+                    {this.renderLatestPostIfExisting()}
+                </section>
             </div>
         );
     }

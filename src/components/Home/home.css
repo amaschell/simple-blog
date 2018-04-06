@@ -1,20 +1,252 @@
 .home {}
 
-.home__finalPresentationPhrase {}
+.home__finalPresentationPhrase {
+    font-weight: bold;
+}
 
 .home__introduction {}
 
 .home__latestPost {}
 
-.home__latestPostAbstract {}
+.home__latestPostAbstract {
+    color: #696970;
+}
 
-.home__latestPostEntryTitle {}
+.home__latestPostEntryTitle {
+    font-weight: bold;
+    color: black;
+}
 
-.home__latestPostMainTitle {}
+.home__latestPostMainTitle {
+    font-weight: bold;
+    color: #5c6773;
+}
 
-.home__latestPostShowMore {}
+.home__latestPostSection {}
 
-.home__presentationText {}
+.home__latestPostShowMore {
+    font-weight: bold;
+    color: #8191a7;
+}
 
-.home__title {}
+.home__presentationText {
+    color: #696970;
+}
+
+.home__title {
+    font-weight: bold;
+    color: #006401;
+}
+
+@media (max-width: 400px) {
+    .home {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .home__latestPost {
+        border-top: 3px solid #006401;
+        padding-top: 1em;
+        padding-bottom: 3em;
+    }
+
+    .home__latestPostAbstract {
+        font-size: 0.9em;
+        margin-bottom: 1.5em;
+    }
+
+    .home__latestPostEntryTitle {
+        font-size: 1em;
+        margin-bottom: 0;
+    }
+
+    .home__latestPostMainTitle {
+        color: #006401;
+        font-size: 1.2em;
+        margin-bottom: 1.5em;
+    }
+
+    .home__latestPostShowMore {
+        font-size: 0.9em;
+    }
+
+    .home__presentationText {
+        font-size: 0.9em;
+        margin-bottom: 3em;
+    }
+
+    .home__title {
+        font-size: 1.3em;
+        margin-bottom: 1.3em;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+    .home {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .home__latestPost {
+        border-top: 4px solid #006401;
+        padding-top: 1.5em;
+        padding-bottom: 3em;
+    }
+
+    .home__latestPostAbstract {
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+
+    .home__latestPostEntryTitle {
+        font-size: 1.1em;
+        margin-bottom: 0;
+    }
+
+    .home__latestPostMainTitle {
+        color: #006401;
+        font-size: 1.3em;
+        margin-bottom: 1.5em;
+    }
+
+    .home__latestPostShowMore {
+        font-size: 1em;
+    }
+
+    .home__presentationText {
+        font-size: 1em;
+        margin-bottom: 3em;
+    }
+
+    .home__title {
+        font-size: 1.4em;
+        margin-bottom: 1.3em;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .home {
+        margin-left: 10%;
+        margin-right: 10%;
+    }
+
+    .home__latestPost {
+        padding-top: 2em;
+        padding-bottom: 3em;
+    }
+
+    .home__latestPostAbstract {
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+
+    .home__latestPostEntryTitle {
+        font-size: 1.1em;
+        margin-bottom: 0;
+    }
+
+    .home__latestPostMainTitle {
+        font-size: 1.5em;
+        margin-bottom: 1.5em;
+    }
+
+    .home__latestPostShowMore {
+        font-size: 1em;
+    }
+
+    .home__title {
+        font-size: 1.5em;
+        margin-bottom: 1.5em;
+        margin-top: 0.4em;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1200px) {
+    .home {
+        margin-left: 15%;
+        margin-right: 15%;
+    }
+
+    .home__latestPost {
+        padding-top: 2em;
+        padding-bottom: 5em;
+    }
+
+    .home__latestPostAbstract {
+        font-size: 1em;
+        margin-bottom: 2em;
+    }
+
+    .home__latestPostEntryTitle {
+        font-size: 1.2em;
+        margin-bottom: 0;
+    }
+
+    .home__latestPostMainTitle {
+        font-size: 2em;
+        margin-bottom: 1.2em;
+    }
+
+    .home__latestPostShowMore {
+        font-size: 1em;
+    }
+
+    .home__title {
+        font-size: 2em;
+        margin-bottom: 1.2em;
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 1201px) {
+    .home {
+        margin-left: 7%;
+        margin-right: 7%;
+    }
+
+    .home__introduction {
+        width: 50%;
+        margin-right: 10%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .home__latestPostAbstract {
+        font-size: 1.2em;
+        margin-bottom: 2em;
+    }
+
+    .home__latestPostEntryTitle {
+        font-size: 1.5em;
+        margin-bottom: 0;
+    }
+
+    .home__latestPostMainTitle {
+        font-size: 2.2em;
+        margin-bottom: 1.2em;
+        margin-top: 0;
+    }
+
+    .home__latestPostSection {
+        width: 38%;
+        margin-left: 2%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .home__latestPostShowMore {
+        font-size: 1.2em;
+    }
+
+    .home__presentationText {
+        font-size: 1.2em;
+        margin-bottom: 5em;
+    }
+
+    .home__title {
+        font-size: 2.2em;
+        margin-bottom: 1.2em;
+        margin-top: 0;
+    }
+}
 
