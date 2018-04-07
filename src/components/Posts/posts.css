@@ -7,7 +7,7 @@
 }
 
 .abstractEntry__author {
-    color: #7996bd;
+    color: darkgray;
     font-weight: bold;
     font-style: italic;
 }
@@ -31,6 +31,9 @@
     -webkit-margin-start: 0;
     -webkit-margin-end: 0;
     -webkit-padding-start: 0;
+    -moz-padding-start: 0;
+    -moz-padding-end: 0;
+    -moz-margin-start: 0;
 }
 
 .posts__mainTitle {

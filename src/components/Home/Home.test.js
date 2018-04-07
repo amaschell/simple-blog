@@ -8,6 +8,7 @@ import LatestPostPreview from './LatestPostPreview';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import * as requests from '../../config/requestsUtility';
 import mockedPosts from '../../__mocks__/postsMock.json';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 
 describe('Home', () => {
     const MockAdapter = require('axios-mock-adapter');
@@ -18,6 +19,16 @@ describe('Home', () => {
 
     let wrapper;
     let mock;
+
+    /**
+     * Helper function to determine if a loading indicator is currently present in the wrapped component or not.
+     *
+     * @param wrapper The wrapped component to test.
+     * @param shouldBePresent True if the loading indicator should be present. False otherwise.
+     */
+    function testThePresenceOfALoadingIndicator(wrapper, shouldBePresent = true) {
+        expect(wrapper.find(LoadingIndicator).length).toEqual(shouldBePresent ? 1 : 0);
+    }
 
     /**
      * Helper function to test for the presence of all introduction texts.
@@ -138,9 +149,15 @@ describe('Home', () => {
     test('The latest post has been fetched from the server and is displayed correctly.', async (done) => {
         mock.onGet(getLatestPostRequestUrl).reply(200, mockedPost);
 
+        // There should be a loading indicator for the latest post so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapper);
+
         await wrapper.find(Home).instance().componentDidMount().then(response => {
             // Trigger a re-rendering.
             wrapper.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapper, false);
 
             // All the texts should still be present after the state has been fetched from the server and after
             // the component has been re-rendered.
@@ -159,9 +176,15 @@ describe('Home', () => {
     test('Error while fetching the latest post from the server is handled correctly.', async (done) => {
         mock.onGet(getLatestPostRequestUrl).reply(500);
 
+        // There should be a loading indicator for the latest post so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapper);
+
         await wrapper.find(Home).instance().componentDidMount().then(response => {
             // Trigger a re-rendering.
             wrapper.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapper, false);
 
             // All the texts should still be present after the state has been fetched from the server and after
             // the component has been re-rendered.
@@ -183,9 +206,15 @@ describe('Home', () => {
     test('The request to the server was successful but there is no latest post is handled correctly.', async (done) => {
         mock.onGet(getLatestPostRequestUrl).reply(200, {});
 
+        // There should be a loading indicator for the latest post so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapper);
+
         await wrapper.find(Home).instance().componentDidMount().then(response => {
             // Trigger a re-rendering.
             wrapper.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapper, false);
 
             // All the texts should still be present after the state has been fetched from the server and after
             // the component has been re-rendered.

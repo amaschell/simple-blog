@@ -1,3 +1,27 @@
+@font-face {
+    font-family: 'DefaultFont';
+    src: url('../../fonts/open-sans/OpenSans-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url('../../fonts/open-sans/OpenSans-Bold.ttf') format('truetype');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url('../../fonts/open-sans/OpenSans-Italic.ttf') format('truetype');
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'DefaultFont';
+    src: url('../../fonts/open-sans/OpenSans-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
 .contact {}
 
 .contact__feedback--failure {
@@ -53,6 +77,11 @@
 }
 
 .contact__formInput--large {
+    /*
+        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
+        of the fields with the same font size!
+    */
+    font-family: DefaultFont, sans-serif;
     display: block;
     border: 1px solid dimgray;
     -moz-border-radius: 0.3em;
@@ -63,6 +92,11 @@
 }
 
 .contact__formInput--largeAndNotValid {
+    /*
+        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
+        of the fields with the same font size!
+    */
+    font-family: DefaultFont, sans-serif;
     display: block;
     border: 1px solid #d43a3a;
     -moz-border-radius: 0.3em;
@@ -75,9 +109,15 @@
 .contact__formInput--large:focus, .contact__formInput--large:active,
 .contact__formInput--largeAndNotValid:focus, .contact__formInput--largeAndNotValid:active {
     background-color: rgba(0, 100, 0, 0.02);
+    border: 2px solid darkgreen !important;
 }
 
 .contact__formInput--small {
+    /*
+        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
+        of the fields with the same font size!
+    */
+    font-family: DefaultFont, sans-serif;
     display: block;
     border: 1px solid dimgray;
     -moz-border-radius: 0.3em;
@@ -88,6 +128,11 @@
 }
 
 .contact__formInput--smallAndNotValid {
+    /*
+        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
+        of the fields with the same font size!
+    */
+    font-family: DefaultFont, sans-serif;
     display: block;
     border: 1px solid #d43a3a;
     -moz-border-radius: 0.3em;
@@ -100,6 +145,7 @@
 .contact__formInput--small:focus, .contact__formInput--small:active,
 .contact__formInput--smallAndNotValid:focus, .contact__formInput--smallAndNotValid:active {
     background-color: rgba(0, 100, 0, 0.02);
+    border: 2px solid darkgreen !important;
 }
 
 .contact__formLabel {

@@ -9,6 +9,7 @@ import mockedPosts from '../../__mocks__/postsMock.json';
 import Post from './Post';
 import Entry from './Entry';
 import InfoMessage from '../InfoMessage/InfoMessage';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 
 
 describe('Post', () => {
@@ -19,6 +20,16 @@ describe('Post', () => {
     let mock;
     const defaultPost = mockedPosts[0];
     const getRequestURLForDefaultPost = requests.makeRequestURL(requests.makePostURL(defaultPost.url));
+
+    /**
+     * Helper function to determine if a loading indicator is currently present in the wrapped component or not.
+     *
+     * @param wrapper The wrapped component to test.
+     * @param shouldBePresent True if the loading indicator should be present. False otherwise.
+     */
+    function testThePresenceOfALoadingIndicator(wrapper, shouldBePresent = true) {
+        expect(wrapper.find(LoadingIndicator).length).toEqual(shouldBePresent ? 1 : 0);
+    }
 
     beforeEach(() => {
         mock = new MockAdapter(axios);
@@ -54,16 +65,24 @@ describe('Post', () => {
     test('Loads the post and displays it properly.', async (done) => {
         mock.onGet(getRequestURLForDefaultPost).reply(200, defaultPost);
 
+        // There should be a loading indicator so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapperWithRouter);
+
         await wrapperWithRouter.find(Post).instance().componentDidMount().then(response => {
             const postComp = wrapperWithRouter.find(Post);
 
             expect(postComp.instance().state).toEqual({
+                  hasNotLoadedPostYet: false,
                   post: defaultPost,
                   hasGeneralServerError: false
             });
 
             // Trigger re-rendering.
             wrapperWithRouter.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
+
             // There should now be one entry for the post in the UI.
             expect(wrapperWithRouter.find(Entry).length).toEqual(1);
 
@@ -116,16 +135,23 @@ describe('Post', () => {
     test('Unknown post renders appropriate 404 InfoMessage', async (done) => {
         mock.onGet(getRequestURLForDefaultPost).reply(404, null);
 
+        // There should be a loading indicator so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapperWithRouter);
+
         await wrapperWithRouter.find(Post).instance().componentDidMount().then(response => {
             const postComp = wrapperWithRouter.find(Post);
 
             expect(postComp.instance().state).toEqual({
+                hasNotLoadedPostYet: false,
                 post: null,
                 hasGeneralServerError: false
             });
 
             // Trigger re-rendering.
             wrapperWithRouter.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
 
             // No post should be in the UI now, only a proper info message should be displayed!
             expect(wrapperWithRouter.find(Entry).length).toEqual(0);
@@ -143,16 +169,23 @@ describe('Post', () => {
             ],
         });
 
+        // There should be a loading indicator so that the user knows that something is going on.
+        testThePresenceOfALoadingIndicator(wrapperWithRouter);
+
         await wrapperWithRouter.find(Post).instance().componentDidMount().then(response => {
             const postComp = wrapperWithRouter.find(Post);
 
             expect(postComp.instance().state).toEqual({
+                hasNotLoadedPostYet: false,
                 post: null,
                 hasGeneralServerError: true
             });
 
             // Trigger re-rendering.
             wrapperWithRouter.update();
+
+            // The request came back, so the indicator should no longer be visible.
+            testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
 
             // No post should be in the UI now, only a proper info message should be displayed!
             expect(wrapperWithRouter.find(Entry).length).toEqual(0);

@@ -3,11 +3,11 @@ import React from 'react';
 import './loadingIndicator.css';
 
 
-const LoadingIndicator = () => (
+const LoadingIndicator = (props) => (
     <div className='loadingIndicator'>
         <div className='loadingIndicator__spinner' />
         <span className='loadingIndicator__text'>
-            Loading...
+            {props.text}
         </span>
     </div>
 );

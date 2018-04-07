@@ -2,6 +2,7 @@ import React from 'react';
 
 import Field from './Field';
 import Feedback from './Feedback';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import * as utils from '../../utils/utils';
 import * as requestsAndURLs from '../../config/requestsUtility';
 import './contact.css';
@@ -21,6 +22,7 @@ class ContactForm extends React.Component {
             subjectIsValid: true,
             messageIsValid: true,
 
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         };
@@ -56,11 +58,13 @@ class ContactForm extends React.Component {
         return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
             .then(res => {
                 this.setState({
+                    isCurrentlySendingFormDataToServer: false,
                     messageHasBeenSent: true
                 });
             })
             .catch(error => {
                 this.setState({
+                    isCurrentlySendingFormDataToServer: false,
                     messageHasBeenSent: false,
                     errorWhenSendingMessage: error.response.data
                 });
@@ -77,13 +81,21 @@ class ContactForm extends React.Component {
                     nameIsValid: utils.isNonEmptyString(this.state.name),
                     emailIsValid: utils.isValidEmail(this.state.email),
                     subjectIsValid: utils.isNonEmptyString(this.state.subject),
-                    messageIsValid: utils.isNonEmptyString(this.state.message),
+                    messageIsValid: utils.isNonEmptyString(this.state.message)
                 },
 
                 async () => {
                     if (this.isFormValid()) {
-                        // Do the actual request.
-                        resolve(this.doFormSubmit());
+                        // First set the state, so that the component gets re-rendered and the loading indicator
+                        // gets shown. After that, the actual request is performed. This is done so that the user
+                        // receives an immediate loading feedback for his form submit action.
+                        this.setState(
+                            {
+                                isCurrentlySendingFormDataToServer: true
+                            },
+
+                            resolve(this.doFormSubmit())
+                        );
                     } else {
                         reject('Form not valid!');
                     }
@@ -111,18 +123,25 @@ class ContactForm extends React.Component {
 
     render() {
         const {
-            errorWhenSendingMessage, messageHasBeenSent,
+            errorWhenSendingMessage, messageHasBeenSent, isCurrentlySendingFormDataToServer,
             email, message, name, subject,
             emailIsValid, messageIsValid, nameIsValid, subjectIsValid
         } = this.state;
 
         let renderedResult;
 
-        if (messageHasBeenSent) {
+        if (isCurrentlySendingFormDataToServer) {
+            // If we're currently sending something to the server, we need to display a loading indicator so that
+            // the user knows that something is happening.
+            renderedResult = <LoadingIndicator text='Sending...'/>;
+
+        } else if (messageHasBeenSent) {
             renderedResult = <Feedback type={Feedback.Types.SUCCESS}
                                        title='Yeeehaaa!'
                                        message='Your message has been delivered successfully.' />;
         } else {
+            // Just render the form. The fields could be empty or already be filled (The latter when the validation
+            // failed for example).
             const fieldCanNotBeEmptyValidationText = 'This field can not be empty!';
             let errorMessage;
 

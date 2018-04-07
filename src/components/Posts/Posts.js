@@ -2,6 +2,7 @@ import React from 'react';
 
 import AbstractEntry from './AbstractEntry';
 import InfoMessage from '../InfoMessage/InfoMessage';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import '../Posts/posts.css';
 import * as requestsAndURLs from '../../config/requestsUtility';
 
@@ -10,6 +11,7 @@ class Posts extends React.Component {
         super(props);
 
         this.state = {
+            hasNotLoadedPostsYet: true,
             posts: [],
             hasError: false
         };
@@ -20,12 +22,14 @@ class Posts extends React.Component {
         return requestsAndURLs.getPosts()
             .then(res => {
                 this.setState({
+                    hasNotLoadedPostsYet: false,
                     posts: res.data,
                     hasError: false
                 });
             })
             .catch(error => {
                 this.setState({
+                    hasNotLoadedPostsYet: false,
                     posts: [],
                     hasError: true
                 });
@@ -33,10 +37,13 @@ class Posts extends React.Component {
     }
 
     renderPosts() {
-        const {hasError, posts} = this.state;
+        const {hasError, hasNotLoadedPostsYet, posts} = this.state;
         let toBeRendered;
 
-        if (hasError) {
+        if (hasNotLoadedPostsYet) {
+            // As long as we have no data, show a loading indicator.
+            toBeRendered = <LoadingIndicator text='Loading...' />;
+        } else if (hasError) {
             // The promise was rejected by the server. Inform the user!
             toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
 

@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 
 import Entry from './Entry';
 import InfoMessage from '../InfoMessage/InfoMessage';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import './post.css';
 import * as requestsAndURLs from '../../config/requestsUtility';
 
@@ -11,6 +12,7 @@ class Post extends React.Component {
         super(props);
 
         this.state = {
+            hasNotLoadedPostYet: true,
             post: null,
             hasGeneralServerError: false
         };
@@ -20,6 +22,7 @@ class Post extends React.Component {
         return requestsAndURLs.getPost(this.props.match.params.slug)
             .then(res => {
                 this.setState({
+                    hasNotLoadedPostYet: false,
                     post: res.data,
                     hasGeneralServerError: false
                 });
@@ -34,6 +37,7 @@ class Post extends React.Component {
                 }
 
                 this.setState({
+                    hasNotLoadedPostYet: false,
                     post: null,
                     hasGeneralServerError: !is404Error
                 });
@@ -41,10 +45,13 @@ class Post extends React.Component {
     }
 
     renderPost() {
-        const {hasGeneralServerError, post} = this.state;
+        const {hasGeneralServerError, hasNotLoadedPostYet, post} = this.state;
         let toBeRendered;
 
-        if (hasGeneralServerError) {
+        if (hasNotLoadedPostYet) {
+            // As long as we have no data, show a loading indicator.
+            toBeRendered = <LoadingIndicator text='Loading...' />;
+        } else if (hasGeneralServerError) {
             // The promise was rejected by the server because of a specific error.
             toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
 

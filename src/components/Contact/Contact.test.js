@@ -8,6 +8,7 @@ import Field from './Field';
 import Feedback from './Feedback';
 import * as requests from '../../config/requestsUtility';
 
+
 describe('Contact', () => {
     const MockAdapter = require('axios-mock-adapter');
     const axios = require('axios');
@@ -89,6 +90,7 @@ describe('Contact', () => {
             emailIsValid: true,
             subjectIsValid: true,
             messageIsValid: true,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
@@ -282,6 +284,7 @@ describe('Contact', () => {
             emailIsValid: false,
             subjectIsValid: false,
             messageIsValid: false,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
@@ -337,6 +340,7 @@ describe('Contact', () => {
             emailIsValid: true,
             subjectIsValid: true,
             messageIsValid: true,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
@@ -392,6 +396,7 @@ describe('Contact', () => {
             emailIsValid: false,
             subjectIsValid: true,
             messageIsValid: true,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
@@ -446,6 +451,7 @@ describe('Contact', () => {
             emailIsValid: true,
             subjectIsValid: false,
             messageIsValid: true,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });
@@ -500,6 +506,7 @@ describe('Contact', () => {
             emailIsValid: true,
             subjectIsValid: true,
             messageIsValid: false,
+            isCurrentlySendingFormDataToServer: false,
             errorWhenSendingMessage: '',
             messageHasBeenSent: false
         });

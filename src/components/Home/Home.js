@@ -4,6 +4,7 @@ import * as requestsAndURLs from '../../config/requestsUtility';
 import * as utils from '../../utils/utils';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import LatestPostPreview from './LatestPostPreview';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import './home.css';
 
 class Home extends React.Component {
@@ -11,6 +12,7 @@ class Home extends React.Component {
         super(props);
 
         this.state = {
+            hasNotLoadedLatestPostYet: true,
             latestPost: null,
             errorWhileFetchingLatestPost: false
         };
@@ -25,12 +27,14 @@ class Home extends React.Component {
                 const latestPost = utils.isEmptyObject(res.data) ? null : res.data;
 
                 this.setState({
+                    hasNotLoadedLatestPostYet: false,
                     latestPost: latestPost,
                     errorWhileFetchingLatestPost: false
                 });
             })
             .catch(error => {
                 this.setState({
+                    hasNotLoadedLatestPostYet: false,
                     latestPost: null,
                     errorWhileFetchingLatestPost: true
                 });
@@ -40,9 +44,12 @@ class Home extends React.Component {
     renderLatestPostIfExisting() {
         let toBeRendered;
 
-        const {errorWhileFetchingLatestPost, latestPost} = this.state;
+        const {errorWhileFetchingLatestPost, hasNotLoadedLatestPostYet, latestPost} = this.state;
 
-        if (errorWhileFetchingLatestPost) {
+        if (hasNotLoadedLatestPostYet) {
+            // As long as we have no data for the latest post, show a loading indicator.
+            toBeRendered = <LoadingIndicator text='Loading...'/>;
+        } else if (errorWhileFetchingLatestPost) {
             toBeRendered = <InfoMessage iconClass='em em-ghost'
                                         text='An error occurred on the server while fetching the latest post...'/>;
         } else if (latestPost) {
@@ -63,7 +70,9 @@ class Home extends React.Component {
                     <h1 className='home__title'>Welcome to the world's most awesome and simplest blog!</h1>
                     <p className='home__presentationText'>
                         What started as a plain side project, is slowly turning into the next big thing, ladies and
-                        gentlemen! This blog tries to be simple, yes. But it also tries to be not <em>that simple </em>
+                        gentlemen! This blog tries to be simple, yes.
+                        <br/>
+                        But it also tries to be not <em>that simple </em>
                         so that one could regard it as boring or ugly.
                         <br/><br/>
                         On the one hand refreshingly new and exciting.
