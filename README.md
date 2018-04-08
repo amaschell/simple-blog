@@ -1,8 +1,7 @@
 # Simple Blog
 
-A normal blog with a simple but lovely design, exhibiting all basic core functionality one would expect from a 
-blog (Amongst others: A landing page, a listing of posts, a page to view each entire post entry, an about page, 
-a contact form).
+A normal blog with a simple but lovely design, exhibiting all basic core features one would expect from a 
+blog. 
 
 This blog was built with the [React.js](https://reactjs.org/) library and bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
@@ -16,13 +15,22 @@ This blog was built with the [React.js](https://reactjs.org/) library and bootst
 
 You need to have [npm](https://www.npmjs.com/) installed.
 
-Then run `npm install` to install all needed dependencies inside your local project.
+To install then all needed dependencies inside your local project, simply run:
+
+```sh
+npm install
+```
 
 
 ### Running the application
 
-To run the application, just execute `npm start` in the root directory of your local project. `create-react-app` will 
-then start everything for you and open the blog's URL `http://localhost:3000/` in your default browser automatically.
+To run the application, just execute the following command in the root directory of your local project:
+```sh
+npm start
+```
+
+`create-react-app` will then start everything for you and open the blog's URL `http://localhost:3000/` in 
+your default browser automatically.
 
 
 ### Running tests 
@@ -30,9 +38,13 @@ then start everything for you and open the blog's URL `http://localhost:3000/` i
 For this project, there exists a full test suite of unit tests. They have been written with
 [Jest](https://facebook.github.io/jest/) (The configured default test runner for `create-react-app`) and the additional
 testing utility [Enzyme](https://github.com/airbnb/enzyme).
- 
-Executing `npm test` in the root directory of your local project will launch Jest in the watch mode inside your console.
 
+To launch **Jest** in the watch mode inside your console, just execute the following command:
+
+```sh
+npm test
+```
+ 
 
 ### Using a local server for back end requests
 
