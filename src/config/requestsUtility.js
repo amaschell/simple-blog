@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 /*
-    All routes and URL's that exist for this application. The base URL is absolute, all the others are relative.
+    All routes and URL's that exist for this application. The base base URL is absolute, all the others are relative.
  */
-const BASE_URL = 'http://localhost:3001';
+const API_BASE_URL = 'http://localhost:3001';
 
 const INDEX_URL = '/';
 const ABOUT_URL = '/about';
@@ -18,7 +18,7 @@ const POST_CONTACT_FORM_URL = '/send-contact-mail';
     Getters that are used for defining the routes in the router. These methods are also useful for testing.
  */
 export function makeRequestURL(resource) {
-    return BASE_URL + resource;
+    return API_BASE_URL + resource;
 }
 
 export function makeIndexURL() {
