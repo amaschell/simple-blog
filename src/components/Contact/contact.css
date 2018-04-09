@@ -24,11 +24,15 @@
 
 .contact {}
 
-.contact__feedback--failure {
-    border: 1px solid #b30c0c;
+.contact__feedback {
+    border: 1px solid;
     -moz-border-radius: 0.3em;
     -webkit-border-radius: 0.3em;
     border-radius: 0.3em;
+}
+
+.contact__feedback--failure {
+    border-color: #b30c0c;
     background-color: #d01c1c4f;
 }
 
@@ -41,10 +45,7 @@
 }
 
 .contact__feedback--success {
-    border: 1px solid #4492c1;
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
-    border-radius: 0.3em;
+    border-color: #4492c1;
     background-color: #87cefa82;
 }
 
@@ -91,25 +92,13 @@
     color: black;
 }
 
-.contact__formInput--largeAndNotValid {
-    /*
-        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
-        of the fields with the same font size!
-    */
-    font-family: DefaultFont, sans-serif;
-    display: block;
-    border: 1px solid #d43a3a;
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
-    border-radius: 0.3em;
-    padding: 0.5em 0.7em;
-    color: black;
+.contact__formInput--large:focus, .contact__formInput--large:active {
+    background-color: rgba(0, 100, 0, 0.02);
+    border: 2px solid darkgreen;
 }
 
-.contact__formInput--large:focus, .contact__formInput--large:active,
-.contact__formInput--largeAndNotValid:focus, .contact__formInput--largeAndNotValid:active {
-    background-color: rgba(0, 100, 0, 0.02);
-    border: 2px solid darkgreen !important;
+.contact__formInput--notValid {
+    border-color: #d43a3a !important;
 }
 
 .contact__formInput--small {
@@ -127,25 +116,9 @@
     color: black;
 }
 
-.contact__formInput--smallAndNotValid {
-    /*
-        Set explicitly the font family here, so that all browsers will always display the input and textarea elements
-        of the fields with the same font size!
-    */
-    font-family: DefaultFont, sans-serif;
-    display: block;
-    border: 1px solid #d43a3a;
-    -moz-border-radius: 0.3em;
-    -webkit-border-radius: 0.3em;
-    border-radius: 0.3em;
-    padding: 0.5em 0.7em;
-    color: black;
-}
-
-.contact__formInput--small:focus, .contact__formInput--small:active,
-.contact__formInput--smallAndNotValid:focus, .contact__formInput--smallAndNotValid:active {
+.contact__formInput--small:focus, .contact__formInput--small:active {
     background-color: rgba(0, 100, 0, 0.02);
-    border: 2px solid darkgreen !important;
+    border: 2px solid darkgreen;
 }
 
 .contact__formLabel {
@@ -154,7 +127,6 @@
 }
 
 .contact__formLabel--notValid {
-    font-weight: bold;
     color: #d43a3a;
 }
 
@@ -188,7 +160,7 @@
         margin-right: 1em;
     }
 
-    .contact__feedback--failure, .contact__feedback--success {
+    .contact__feedback {
         margin-top: 1.5em;
         padding: 0.5em;
     }
@@ -211,21 +183,21 @@
         font-size: 0.8em;
     }
 
-    .contact__formInput--large, .contact__formInput--largeAndNotValid {
+    .contact__formInput--large {
         margin-top: 0.4em;
         margin-bottom: 0.4em;
         font-size: 0.8em;
         width: 90%;
     }
 
-    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+    .contact__formInput--small {
         margin-top: 0.4em;
         margin-bottom: 0.4em;
         font-size: 0.8em;
         width: 90%;
     }
 
-    .contact__formLabel, .contact__formLabel--notValid {
+    .contact__formLabel {
         font-size: 0.9em;
     }
 
@@ -253,7 +225,7 @@
         margin-right: 2em;
     }
 
-    .contact__feedback--failure, .contact__feedback--success {
+    .contact__feedback {
         margin-top: 2em;
         padding: 0.7em 1em;
     }
@@ -276,21 +248,21 @@
         font-size: 0.9em;
     }
 
-    .contact__formInput--large, .contact__formInput--largeAndNotValid {
+    .contact__formInput--large {
         margin-top: 0.4em;
         margin-bottom: 0.3em;
         font-size: 1em;
         width: 95%;
     }
 
-    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+    .contact__formInput--small {
         margin-top: 0.4em;
         margin-bottom: 0.3em;
         font-size: 1em;
         width: 95%;
     }
 
-    .contact__formLabel, .contact__formLabel--notValid {
+    .contact__formLabel {
         font-size: 1em;
     }
 
@@ -319,7 +291,7 @@
         margin-right: 2em;
     }
 
-    .contact__feedback--failure, .contact__feedback--success {
+    .contact__feedback {
         margin-top: 2em;
         padding: 1em;
         width: 80%;
@@ -344,7 +316,7 @@
         font-size: 1em;
     }
 
-    .contact__formInput--large, .contact__formInput--largeAndNotValid {
+    .contact__formInput--large {
         margin-top: 0.4em;
         margin-bottom: 0.5em;
         font-size: 1em;
@@ -352,7 +324,7 @@
         max-width: 30em;
     }
 
-    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+    .contact__formInput--small {
         margin-top: 0.4em;
         margin-bottom: 0.5em;
         font-size: 1em;
@@ -360,7 +332,7 @@
         max-width: 30em;
     }
 
-    .contact__formLabel, .contact__formLabel--notValid {
+    .contact__formLabel {
         font-size: 1em;
     }
 
@@ -384,7 +356,7 @@
         margin-right: 15%;
     }
 
-    .contact__feedback--failure, .contact__feedback--success {
+    .contact__feedback {
         margin-top: 3em;
         margin-bottom: 1em;
         padding: 1.2em 2em 1.2em 2em;
@@ -409,21 +381,21 @@
         font-size: 1em;
     }
 
-    .contact__formInput--large, .contact__formInput--largeAndNotValid {
+    .contact__formInput--large {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
         font-size: 1em;
         width: 35em;
     }
 
-    .contact__formInput--small, .contact__formInput--smallAndNotValid {
+    .contact__formInput--small {
         margin-top: 0.5em;
         margin-bottom: 0.5em;
         font-size: 1em;
         width: 35em;
     }
 
-    .contact__formLabel, .contact__formLabel--notValid {
+    .contact__formLabel {
         font-size: 1.1em;
     }
 

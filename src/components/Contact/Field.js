@@ -9,11 +9,11 @@ const Field = (props) => {
 
     if (size === Sizes.LARGE) {
         inputElement = <textarea value={value} rows='6'
-                                 className={(isValid ? 'contact__formInput--large' : 'contact__formInput--largeAndNotValid')}
+                                 className={`contact__formInput--large ${isValid ? '' : 'contact__formInput--notValid'}`}
                                  onChange={(e) => valueChanged(e.target.value)} />;
     } else {
         inputElement = <input type='text' value={value}
-                              className={(isValid ? 'contact__formInput--small' : 'contact__formInput--smallAndNotValid')}
+                              className={`contact__formInput--small ${isValid ? '' : 'contact__formInput--notValid'}`}
                               onChange={(e) => valueChanged(e.target.value)} />;
     }
 
@@ -26,7 +26,7 @@ const Field = (props) => {
 
     return (
         <div className='contact__formField'>
-            <label className={(isValid ? 'contact__formLabel' : 'contact__formLabel--notValid')}>
+            <label className={`contact__formLabel ${isValid ? '' : 'contact__formLabel--notValid'}`}>
                 {name}
             </label>
 

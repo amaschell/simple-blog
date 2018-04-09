@@ -128,31 +128,34 @@ class ContactForm extends React.Component {
             emailIsValid, messageIsValid, nameIsValid, subjectIsValid
         } = this.state;
 
-        let renderedResult;
 
         if (isCurrentlySendingFormDataToServer) {
             // If we're currently sending something to the server, we need to display a loading indicator so that
             // the user knows that something is happening.
-            renderedResult = <LoadingIndicator text='Sending...'/>;
+            return (<LoadingIndicator text='Sending...'/>);
 
         } else if (messageHasBeenSent) {
-            renderedResult = <Feedback type={Feedback.Types.SUCCESS}
-                                       title='Yeeehaaa!'
-                                       message='Your message has been delivered successfully.' />;
-        } else {
-            // Just render the form. The fields could be empty or already be filled (The latter when the validation
-            // failed for example).
-            const fieldCanNotBeEmptyValidationText = 'This field can not be empty!';
-            let errorMessage;
+            return (
+                <Feedback type={Feedback.Types.SUCCESS} title='Yeeehaaa!'
+                          message='Your message has been delivered successfully.' />
+            );
+        }
 
-            if (errorWhenSendingMessage) {
-                errorMessage = <Feedback type={Feedback.Types.FAILURE}
-                                         title='Your mail could not get sent due to an error!'
-                                         message={errorWhenSendingMessage} />;
-            }
+        // Just render the form. The fields could be empty or already be filled (The latter when the validation
+        // failed for example).
+        const fieldCanNotBeEmptyValidationText = 'This field can not be empty!';
 
-            renderedResult =
-                <form className='contact__form'>
+        // Show an error only if there was one!
+        const errorMessage = errorWhenSendingMessage ?
+                             (
+                                 <Feedback type={Feedback.Types.FAILURE}
+                                           title='Your mail could not get sent due to an error!'
+                                           message={errorWhenSendingMessage} />
+                             ) :
+                             null;
+
+        return (
+            <form className='contact__form'>
                     <Field size={Field.Sizes.SMALL} name='Name' value={name}
                            valueChanged={this.handleFieldChange.bind(this, 'name')}
                            isValid={nameIsValid} errorText={fieldCanNotBeEmptyValidationText} />
@@ -176,11 +179,8 @@ class ContactForm extends React.Component {
                             Send
                         </button>
                     </div>
-                </form>;
-        }
-
-
-        return renderedResult;
+            </form>
+        );
     }
 }
 

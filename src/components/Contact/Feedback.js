@@ -4,10 +4,6 @@ import './contact.css';
 import PropTypes from 'prop-types';
 
 class Feedback extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
     componentDidMount() {
         // After the first rendering.
         this.scrollIntoView();
@@ -29,7 +25,7 @@ class Feedback extends React.Component {
 
         return (
             <div tabIndex='-1'
-                 className={(type === Types.SUCCESS ? 'contact__feedback--success' : 'contact__feedback--failure')}
+                 className={`contact__feedback contact__feedback--${type === Types.SUCCESS ? 'success' : 'failure'}`}
                  ref={(node) => { this.divToFocus = node; }}>
 
                 <h3 className='contact__feedbackTitle'>{title}</h3>
