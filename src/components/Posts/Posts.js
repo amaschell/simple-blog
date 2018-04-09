@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AbstractEntry from './AbstractEntry';
+import PostAbstract from '../PostAbstract/PostAbstract';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import '../Posts/posts.css';
@@ -37,34 +37,34 @@ class Posts extends React.Component {
     }
 
     renderPosts() {
-        const {hasError, hasNotLoadedPostsYet, posts} = this.state;
-        let toBeRendered;
+        const { hasError, hasNotLoadedPostsYet, posts } = this.state;
 
         if (hasNotLoadedPostsYet) {
             // As long as we have no data, show a loading indicator.
-            toBeRendered = <LoadingIndicator text='Loading...' />;
+            return (<LoadingIndicator text='Loading...' />);
         } else if (hasError) {
             // The promise was rejected by the server. Inform the user!
-            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
-
+            return (<InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>);
         } else if (posts.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
-            toBeRendered = <InfoMessage iconClass='em em-ghost' text='No posts seem to exist...'/>;
-
-        } else {
-            // We have a list of posts, simply display it.
-            toBeRendered = <ul className='posts__list'>
-                            {
-                                posts.map( (post) => {
-                                    return <AbstractEntry key={post.id} post={post} />;
-                                })
-                            }
-                            </ul>;
-
+            return (<InfoMessage iconClass='em em-ghost' text='No posts seem to exist...'/>);
         }
 
-        return toBeRendered;
+        // We have a list of posts, simply display it.
+        return (
+            <ul className='posts__list'>
+                {
+                    posts.map( (post) => {
+                        return (
+                            <li key={post.id}>
+                                <PostAbstract post={post} />
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        );
     }
 
     render() {

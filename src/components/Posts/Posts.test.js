@@ -1,13 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link, MemoryRouter} from 'react-router-dom';
-import {mount} from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
 
 import * as requests from '../../config/requestsUtility';
 import mockedPosts from '../../__mocks__/postsMock.json';
 
 import Posts from './Posts';
-import AbstractEntry from './AbstractEntry';
+import PostAbstract from '../PostAbstract/PostAbstract';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 
@@ -69,65 +69,7 @@ describe('Posts', () => {
             // The request came back, so the indicator should no longer be visible.
             testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
             // For each post, there should now be an entry in the UI.
-            expect(wrapperWithRouter.find(AbstractEntry).length).toEqual(mockedPosts.length);
-
-            done();
-        });
-    });
-
-    test('AbstractEntry component renders without crashing.', () => {
-        const div = document.createElement('div');
-        const props = {
-            post: mockedPosts[0]
-        };
-        // We have to wrap the AbstractEntry component inside a MemoryRouter as the Link component of react-router-dom
-        // gets used and therefore we always need a router context.
-        const wrappedAbstractEntryWithRouter = mount(
-            <MemoryRouter>
-                <AbstractEntry {...props} />
-            </MemoryRouter>
-        );
-
-        ReactDOM.render(wrappedAbstractEntryWithRouter, div);
-    });
-
-    test('AbstractEntry components display correct data.', async (done) => {
-        mock.onGet(getRequestURLForPosts).reply(200, mockedPosts);
-
-        const post1 = mockedPosts[0],
-              post2 = mockedPosts[1],
-              post3 = mockedPosts[2];
-
-        /**
-         * A helper function that tests if an AbstractEntry component is properly displaying its content.
-         * @param post The post content.
-         * @param entryIndex The index of the entry in the UI list.
-         */
-        function testIfAbstractEntryIsCorrectlyDisplayingItsContent(post, entryIndex) {
-            const {abstract, author, date, title, url} = post;
-
-            const wrappedPost = wrapperWithRouter.find('.posts__list').childAt(entryIndex);
-            const wrappedLink = wrappedPost.find(Link);
-
-            expect(wrappedLink.length).toEqual(1);
-            expect(wrappedLink.text()).toEqual(title);
-            expect(wrappedLink.prop('to')).toEqual(requests.makePostURL(url));
-
-            expect(wrappedPost.find('.abstractEntry__date').text()).toEqual(date);
-            expect(wrappedPost.find('.abstractEntry__author').text()).toMatch(author);
-            expect(wrappedPost.find('.abstractEntry__abstract').text()).toEqual(abstract);
-        }
-
-        await wrapperWithRouter.find(Posts).instance().componentDidMount().then(response => {
-            // Trigger a re-rendering.
-            wrapperWithRouter.update();
-            // For each post, there should not be an entry in the UI.
-            expect(wrapperWithRouter.find(AbstractEntry).length).toEqual(mockedPosts.length);
-            expect(wrapperWithRouter.find('li').length).toEqual(mockedPosts.length);
-
-            testIfAbstractEntryIsCorrectlyDisplayingItsContent(post1, 0);
-            testIfAbstractEntryIsCorrectlyDisplayingItsContent(post2, 1);
-            testIfAbstractEntryIsCorrectlyDisplayingItsContent(post3, 2);
+            expect(wrapperWithRouter.find(PostAbstract).length).toEqual(mockedPosts.length);
 
             done();
         });
@@ -155,7 +97,7 @@ describe('Posts', () => {
             testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
 
             // No post entries should now has been rendered but a proper info message should be displayed!
-            expect(wrapperWithRouter.find(AbstractEntry).length).toEqual(0);
+            expect(wrapperWithRouter.find(PostAbstract).length).toEqual(0);
             expect(wrapperWithRouter.find(InfoMessage).length).toEqual(1);
             expect(wrapperWithRouter.find('.infoMessage__text').text()).toMatch('No posts seem to exist...');
 
@@ -185,7 +127,7 @@ describe('Posts', () => {
             testThePresenceOfALoadingIndicator(wrapperWithRouter, false);
 
             // No post entries should now has been rendered but a proper info message should be displayed!
-            expect(wrapperWithRouter.find(AbstractEntry).length).toEqual(0);
+            expect(wrapperWithRouter.find(PostAbstract).length).toEqual(0);
             expect(wrapperWithRouter.find(InfoMessage).length).toEqual(1);
             expect(wrapperWithRouter.find('.infoMessage__text').text()).toMatch('Could not get proper response from server');
 
