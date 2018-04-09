@@ -5,38 +5,6 @@
     color: black;
 }
 
-.about__user {}
-
-.about__userDescription {
-    color: dimgray;
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    -moz-margin-start: 0;
-    -moz-padding-start: 0;
-    -moz-padding-end: 0;
-}
-
-.about__userInfo {}
-
-.about__userName {
-    font-weight: bold;
-    color: darkgreen;
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
-    -moz-margin-start: 0;
-    -moz-padding-start: 0;
-    -moz-padding-end: 0;
-}
-
-.about__userPicture {
-    max-width: 100%;
-    height: auto;
-}
-
 .about__usersList {
     -webkit-margin-before: 0;
     -webkit-margin-after: 0;
@@ -48,6 +16,10 @@
     -moz-padding-end: 0;
 }
 
+.about__usersList li {
+    display: block;
+}
+
 @media (max-width: 400px) {
     .about {
         margin-left: 1em;
@@ -57,24 +29,6 @@
     .about__mainTitle {
         font-size: 1.5em;
         margin-bottom: 1.2em;
-    }
-
-    .about__user {
-        display: block;
-        margin-bottom: 3em;
-    }
-
-    .about__userDescription {
-        font-size: 0.9em;
-    }
-
-    .about__userName {
-        margin-bottom: 0.5em;
-    }
-
-    .about__userPicture {
-        margin-bottom: 0.5em;
-        max-width: 75%;
     }
 }
 
@@ -89,25 +43,6 @@
         margin-top: 0.5em;
         margin-bottom: 1.5em;
     }
-
-    .about__user {
-        display: block;
-        margin-bottom: 5em;
-    }
-
-    .about__userDescription {
-        font-size: 1em;
-    }
-
-    .about__userName {
-        font-size: 1.2em;
-        margin-bottom: 0.7em;
-    }
-
-    .about__userPicture {
-        margin-bottom: 1em;
-        max-width: 60%;
-    }
 }
 
 @media (min-width: 601px) and (max-width: 900px) {
@@ -120,25 +55,6 @@
         font-size: 2em;
         margin-top: 0;
         margin-bottom: 1.5em;
-    }
-
-    .about__user {
-        display: block;
-        margin-bottom: 6em;
-    }
-
-    .about__userDescription {
-        font-size: 1.1em;
-    }
-
-    .about__userName {
-        font-size: 1.3em;
-        margin-bottom: 0.9em;
-    }
-
-    .about__userPicture {
-        margin-bottom: 1em;
-        max-width: 55%;
     }
 }
 
@@ -153,31 +69,6 @@
         margin-top: -0.3em;
         margin-bottom: 1.5em;
     }
-
-    .about__user {
-        display: block;
-        margin-bottom: 6em;
-    }
-
-    .about__userDescription {
-        font-size: 1.2em;
-    }
-
-    .about__userInfo {
-        float: right;
-        width: 55%;
-    }
-
-    .about__userName {
-        font-size: 1.5em;
-        margin-bottom: 1em;
-        margin-top: 0;
-    }
-
-    .about__userPicture {
-        width: 40%;
-        margin-right: 5%;
-    }
 }
 
 @media (min-width: 1501px) {
@@ -190,30 +81,5 @@
         font-size: 2.5em;
         margin-top: -0.3em;
         margin-bottom: 1.5em;
-    }
-
-    .about__user {
-        display: block;
-        margin-bottom: 8em;
-    }
-
-    .about__userDescription {
-        font-size: 1.7em;
-        width: 70%;
-    }
-
-    .about__userInfo {
-        float: right;
-        width: 58%;
-    }
-
-    .about__userName {
-        font-size: 2.5em;
-        margin-bottom: 1em;
-    }
-
-    .about__userPicture {
-        width: 35%;
-        margin-right: 7%;
     }
 }

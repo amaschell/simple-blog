@@ -1,0 +1,148 @@
+.userInfo {}
+
+.userInfo__description {
+    color: dimgray;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -moz-margin-start: 0;
+    -moz-padding-start: 0;
+    -moz-padding-end: 0;
+}
+
+.userInfo__informationWrapper {}
+
+.userInfo__name {
+    font-weight: bold;
+    color: darkgreen;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -moz-margin-start: 0;
+    -moz-padding-start: 0;
+    -moz-padding-end: 0;
+}
+
+.userInfo__picture {
+    max-width: 100%;
+    height: auto;
+}
+
+
+@media (max-width: 400px) {
+    .userInfo {
+        display: block;
+        margin-bottom: 3em;
+    }
+
+    .userInfo__description {
+        font-size: 0.9em;
+    }
+
+    .userInfo__name {
+        margin-bottom: 0.5em;
+    }
+
+    .userInfo__picture {
+        margin-bottom: 0.5em;
+        max-width: 75%;
+    }
+}
+
+@media (min-width: 401px) and (max-width: 600px) {
+    .userInfo {
+        display: block;
+        margin-bottom: 5em;
+    }
+
+    .userInfo__description {
+        font-size: 1em;
+    }
+
+    .userInfo__name {
+        font-size: 1.2em;
+        margin-bottom: 0.7em;
+    }
+
+    .userInfo__picture {
+        margin-bottom: 1em;
+        max-width: 60%;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+    .userInfo {
+        display: block;
+        margin-bottom: 6em;
+    }
+
+    .userInfo__description {
+        font-size: 1.1em;
+    }
+
+    .userInfo__name {
+        font-size: 1.3em;
+        margin-bottom: 0.9em;
+    }
+
+    .userInfo__picture {
+        margin-bottom: 1em;
+        max-width: 55%;
+    }
+}
+
+@media (min-width: 901px) and (max-width: 1500px) {
+    .userInfo {
+        display: block;
+        margin-bottom: 6em;
+    }
+
+    .userInfo__description {
+        font-size: 1.2em;
+    }
+
+    .userInfo__informationWrapper {
+        float: right;
+        width: 55%;
+    }
+
+    .userInfo__name {
+        font-size: 1.5em;
+        margin-bottom: 1em;
+        margin-top: 0;
+    }
+
+    .userInfo__picture {
+        width: 40%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 1501px) {
+    .userInfo {
+        display: block;
+        margin-bottom: 8em;
+    }
+
+    .userInfo__description {
+        font-size: 1.7em;
+        width: 70%;
+    }
+
+    .userInfo__informationWrapper {
+        float: right;
+        width: 58%;
+    }
+
+    .userInfo__name {
+        font-size: 2.5em;
+        margin-bottom: 1em;
+    }
+
+    .userInfo__picture {
+        width: 35%;
+        margin-right: 7%;
+    }
+}

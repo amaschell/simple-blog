@@ -1,6 +1,6 @@
 import React from 'react';
 
-import UserInfo from './UserInfo';
+import UserInfo from '../UserInfo/UserInfo';
 import InfoMessage from '../InfoMessage/InfoMessage';
 import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import './about.css';
@@ -37,34 +37,35 @@ class About extends React.Component {
     }
 
     renderAuthors() {
-        const {hasError, hasNotLoadedUsersYet, users} = this.state;
-        let toBeRendered;
+        const { hasError, hasNotLoadedUsersYet, users } = this.state;
 
         if (hasNotLoadedUsersYet) {
             // As long as we have no data, show a loading indicator.
-            toBeRendered = <LoadingIndicator text='Loading...'/>;
+            return (<LoadingIndicator text='Loading...'/>);
         } else if (hasError) {
             // The promise was rejected by the server. Inform the user!
-            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
+            return (<InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>);
 
         } else if (users.length === 0) {
             // The promise resolved but the list is empty and therefore there's nothing to display.
             // Inform the user!
-            toBeRendered = <InfoMessage iconClass='em em-ghost' text='No authors seem to exist...'/>;
-
-        } else {
-            // We have a list of authors, simply display it.
-            toBeRendered =  <ul className='about__usersList'>
-                                {
-                                    users.map( (user) => {
-                                        return <UserInfo key={user.id} user={user} />;
-                                    })
-                                }
-                            </ul>;
-
+            return (<InfoMessage iconClass='em em-ghost' text='No authors seem to exist...'/>);
         }
 
-        return toBeRendered;
+        // We have a list of authors, simply display it.
+        return (
+            <ul className='about__usersList'>
+                {
+                    users.map( (user) => {
+                        return (
+                            <li key={user.id}>
+                                <UserInfo user={user} />
+                            </li>
+                        );
+                    })
+                }
+            </ul>
+        );
     };
 
     render() {
