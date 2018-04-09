@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MemoryRouter} from 'react-router-dom';
-import {mount} from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
 
 import Home from './Home';
 import LatestPostPreview from './LatestPostPreview';

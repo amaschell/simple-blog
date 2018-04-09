@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Footer from './Footer';
 
@@ -8,7 +8,9 @@ describe('Footer', () => {
     let shallowWrapper;
 
     beforeEach(() => {
-        shallowWrapper = shallow(<Footer />);
+        shallowWrapper = shallow(
+            <Footer />
+        );
     });
 
     test('Renders without crashing.', () => {

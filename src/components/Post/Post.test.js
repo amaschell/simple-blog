@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Link, MemoryRouter} from 'react-router-dom';
-import {mount} from 'enzyme';
+import { Link, MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
 
 import * as requests from '../../config/requestsUtility';
 import mockedPosts from '../../__mocks__/postsMock.json';

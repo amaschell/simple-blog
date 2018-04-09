@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MemoryRouter} from 'react-router-dom';
-import {mount} from 'enzyme';
+import { MemoryRouter } from 'react-router-dom';
+import { mount } from 'enzyme';
 
 import Header from './Header';
 import Navigation from '../Navigation/Navigation';
@@ -13,9 +13,10 @@ describe('Header', () => {
         // We need to wrap the component inside a router here because
         // one of the Header's sub components uses react router's Link component
         // and needs therefore a router context.
-        wrapper = mount(<MemoryRouter>
-                            <Header />
-                          </MemoryRouter>
+        wrapper = mount(
+            <MemoryRouter>
+                <Header />
+            </MemoryRouter>
         );
     });
 

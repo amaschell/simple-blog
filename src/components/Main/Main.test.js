@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {MemoryRouter, Switch} from 'react-router-dom';
-import {mount} from 'enzyme';
+import { MemoryRouter, Switch } from 'react-router-dom';
+import { mount } from 'enzyme';
 
 import About from '../About/About';
 import Contact from "../Contact/Contact";

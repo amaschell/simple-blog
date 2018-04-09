@@ -12,7 +12,9 @@ describe('UserInfo', () => {
 
     test('Renders without crashing.', () => {
         const div = document.createElement('div');
-        const wrapper = shallow(<UserInfo user={mockedUser} />);
+        const wrapper = shallow(
+            <UserInfo user={mockedUser} />
+        );
 
         ReactDOM.render(wrapper, div);
     });
@@ -21,7 +23,9 @@ describe('UserInfo', () => {
         const { description, firstName, lastName, profilePicture } = mockedUser;
         const fullName = `${firstName} ${lastName}`;
 
-        const wrapper = shallow(<UserInfo user={mockedUser} />);
+        const wrapper = shallow(
+            <UserInfo user={mockedUser} />
+        );
 
         // The correct image is displayed for the user.
         const wrappedImage = wrapper.find('.userInfo__picture');

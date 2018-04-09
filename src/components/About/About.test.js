@@ -31,7 +31,9 @@ describe('About', () => {
 
     beforeEach(() => {
         mock = new MockAdapter(axios);
-        wrapper = mount(<About />);
+        wrapper = mount(
+            <About />
+        );
     });
 
 

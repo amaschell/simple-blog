@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Entry from './Entry';
 import InfoMessage from '../InfoMessage/InfoMessage';
@@ -45,26 +45,21 @@ class Post extends React.Component {
     }
 
     renderPost() {
-        const {hasGeneralServerError, hasNotLoadedPostYet, post} = this.state;
-        let toBeRendered;
+        const { hasGeneralServerError, hasNotLoadedPostYet, post } = this.state;
 
         if (hasNotLoadedPostYet) {
             // As long as we have no data, show a loading indicator.
-            toBeRendered = <LoadingIndicator text='Loading...' />;
+            return (<LoadingIndicator text='Loading...' />);
         } else if (hasGeneralServerError) {
             // The promise was rejected by the server because of a specific error.
-            toBeRendered = <InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>;
-
+            return (<InfoMessage iconClass='em em-no_entry' text='Could not get proper response from server'/>);
         } else if (!post) {
             // The promise was resolved but the post was not found (404).
-            toBeRendered = <InfoMessage iconClass='em em-ghost' text='This post does not seem to exist...'/>;
-
-        } else {
-            // The post does exist, simply display it.
-            toBeRendered = <Entry post={post} />;
+            return (<InfoMessage iconClass='em em-ghost' text='This post does not seem to exist...'/>);
         }
 
-        return toBeRendered;
+        // The post does exist, simply display it.
+        return (<Entry post={post} />);
     }
 
     render() {

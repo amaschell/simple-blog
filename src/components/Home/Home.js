@@ -44,16 +44,18 @@ class Home extends React.Component {
     renderLatestPostIfExisting() {
         let toBeRendered;
 
-        const {errorWhileFetchingLatestPost, hasNotLoadedLatestPostYet, latestPost} = this.state;
+        const { errorWhileFetchingLatestPost, hasNotLoadedLatestPostYet, latestPost } = this.state;
 
         if (hasNotLoadedLatestPostYet) {
             // As long as we have no data for the latest post, show a loading indicator.
-            toBeRendered = <LoadingIndicator text='Loading...'/>;
+            toBeRendered = (<LoadingIndicator text='Loading...'/>);
         } else if (errorWhileFetchingLatestPost) {
-            toBeRendered = <InfoMessage iconClass='em em-ghost'
-                                        text='An error occurred on the server while fetching the latest post...'/>;
+            toBeRendered = (
+                <InfoMessage iconClass='em em-ghost'
+                             text='An error occurred on the server while fetching the latest post...'/>
+            );
         } else if (latestPost) {
-            toBeRendered = <LatestPostPreview latestPost={latestPost} />;
+            toBeRendered = (<LatestPostPreview latestPost={latestPost} />);
         } else {
             // This means that no error occurred on the server but we got no latest post object back. In that case,
             // we assume that there's no latest post yet existing and we do not render the latest post section.
@@ -67,23 +69,28 @@ class Home extends React.Component {
         return (
             <div className='home'>
                 <section className='home__introduction'>
-                    <h1 className='home__title'>Welcome to the world's most awesome and simplest blog!</h1>
-                    <p className='home__presentationText'>
-                        What started as a plain side project, is slowly turning into the next big thing, ladies and
-                        gentlemen! This blog tries to be simple, yes.
-                        <br/>
-                        But it also tries to be not <em>that simple </em>
-                        so that one could regard it as boring or ugly.
-                        <br/><br/>
-                        On the one hand refreshingly new and exciting.
-                        And on the other hand exceedingly familiar and convenient.<br/>
-                        But most notably: <b>It is simply a blog!</b>
-                        <br/><br/>
-                        <em className='home__finalPresentationPhrase'>
-                            "One blog to rule them all, one blog to find them, one blog to bring them all and in
-                            the simplicity bind them!"
-                        </em>
-                    </p>
+                    <h1 className='home__title'>Welcome to the world’s most awesome and simplest blog!</h1>
+                    <div className='home__presentationText'>
+                        <p>
+                            What started as a plain side project, is slowly turning into the next big thing, ladies and
+                            gentlemen! This blog tries to be simple, yes. But it also tries to be not <em>that simple </em>
+                            so that one could regard it as boring or ugly.
+                        </p>
+
+                        <p>
+                            On the one hand refreshingly new and exciting.
+                            And on the other hand exceedingly familiar and convenient.
+                            But most notably: <b>It is simply a blog!</b>
+                        </p>
+
+                        <p>
+                            <em className='home__finalPresentationPhrase'>
+                                "One blog to rule them all, one blog to find them, one blog to bring them all and in
+                                the simplicity bind them!"
+                            </em>
+                        </p>
+
+                    </div>
                 </section>
 
                 <section className='home__latestPostSection'>

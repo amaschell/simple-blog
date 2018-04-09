@@ -1,11 +1,10 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import './home.css';
 import * as requestsAndURLs from '../../config/requestsUtility';
 
-const LatestPostPreview = (props) => {
-    const {abstract, date, title, url} = props.latestPost;
+const LatestPostPreview = ({ latestPost : { abstract, date, title, url }}) => {
     const linkToPost = requestsAndURLs.makePostURL(url);
 
     return (

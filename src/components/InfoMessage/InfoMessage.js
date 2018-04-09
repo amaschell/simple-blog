@@ -2,14 +2,14 @@ import React from 'react';
 
 import './infoMessage.css';
 
-const InfoMessage = (props) => (
+const InfoMessage = ({ iconClass, text }) => (
     <p className='infoMessage'>
         <span className='infoMessage__icon'>
-                <i className={props.iconClass}/>
+                <i className={iconClass}/>
         </span>
 
         <span className='infoMessage__text'>
-            {props.text}
+            {text}
         </span>
     </p>
 );
