@@ -7,6 +7,8 @@
     font-size: 1em;
 }
 
+.navigation__item {}
+
 .navigation__link {
     color: #8191a7;
     font-weight: bold;
@@ -14,12 +16,12 @@
     font-family: NavFont, sans-serif;
 }
 
-
 .navigation__list {
     text-align: center;
     -webkit-padding-start: 0;
     -moz-padding-start: 0;
 }
+
 
 @media (max-width: 400px) {
     .navigation__item {
