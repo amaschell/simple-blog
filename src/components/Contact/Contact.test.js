@@ -30,6 +30,7 @@ describe('Contact', () => {
         expect(field.type()).toEqual(Field);
         // Correct label without error style.
         expect(field.find('.contact__formLabel').text()).toMatch(name);
+        expect(field.find('.contact__formLabel--notValid').length).toEqual(0);
         // The correct input element is present.
         expect(field.find(hasInput ? 'input' : 'textarea').length).toEqual(1);
         // Contains correct value.
@@ -56,10 +57,10 @@ describe('Contact', () => {
         expect(field.find('.contact__formLabel--notValid').text()).toMatch(name);
         // The correct input element is present.
         expect(field.find(hasInput ? 'input' : 'textarea').length).toEqual(1);
+        // Proper and valid CSS class is set.
+        expect(field.find(hasInput ? '.contact__formInput--small' : '.contact__formInput--large').length).toEqual(1);
         // The invalid CSS class is set for the input.
-        expect(field.find(
-            hasInput ? '.contact__formInput--smallAndNotValid' : '.contact__formInput--largeAndNotValid').length
-        ).toEqual(1);
+        expect(field.find('.contact__formInput--notValid').length).toEqual(1);
         // The error label is present.
         expect(field.find('.contact__formFieldError').length).toEqual(1);
     }
@@ -119,6 +120,7 @@ describe('Contact', () => {
             <Feedback type={Feedback.Types.SUCCESS} title={successTitle} message={successMessage}/>
         );
 
+        expect(mountedFeedback.find('.contact__feedback').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedback--success').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedbackTitle').text()).toMatch(successTitle);
         expect(mountedFeedback.find('.contact__feedbackMessage').text()).toMatch(successMessage);
@@ -131,6 +133,7 @@ describe('Contact', () => {
             <Feedback type={Feedback.Types.FAILURE} title={errorTitle} message={errorMessage}/>
         );
 
+        expect(mountedFeedback.find('.contact__feedback').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedback--failure').length).toEqual(1);
         expect(mountedFeedback.find('.contact__feedbackTitle').text()).toMatch(errorTitle);
         expect(mountedFeedback.find('.contact__feedbackMessage').text()).toMatch(errorMessage);
@@ -157,6 +160,7 @@ describe('Contact', () => {
         // Has an HTML input element as input element.
         expect(mountedField.find('input').length).toEqual(1);
         expect(mountedField.find('.contact__formInput--small').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--notValid').length).toEqual(0);
         expect(mountedField.find('input').props().value).toEqual(val);
     });
 
@@ -181,7 +185,8 @@ describe('Contact', () => {
 
         expect(mountedField.find('input').length).toEqual(1);
         // The input has the proper "not-valid" class.
-        expect(mountedField.find('.contact__formInput--smallAndNotValid').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--small').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--notValid').length).toEqual(1);
         expect(mountedField.find('input').props().value).toEqual(val);
 
         // The field error is present.
@@ -210,6 +215,7 @@ describe('Contact', () => {
         // Has a HTML textarea element as input element.
         expect(mountedField.find('textarea').length).toEqual(1);
         expect(mountedField.find('.contact__formInput--large').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--notValid').length).toEqual(0);
         expect(mountedField.find('textarea').props().value).toEqual(val);
     });
 
@@ -234,7 +240,8 @@ describe('Contact', () => {
 
         expect(mountedField.find('textarea').length).toEqual(1);
         // The textarea element has the proper "not-valid" class.
-        expect(mountedField.find('.contact__formInput--largeAndNotValid').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--large').length).toEqual(1);
+        expect(mountedField.find('.contact__formInput--notValid').length).toEqual(1);
         expect(mountedField.find('textarea').props().value).toEqual(val);
 
         // The field error is present.
