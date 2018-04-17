@@ -18,27 +18,26 @@ class Home extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // Return the promise here, so that the promise can get chained in the tests!
-        return requestsAndURLs.getLatestPostForHome()
-            .then(res => {
-                // If the response is empty, we assume that there is no latest post yet and in that case we need
-                // to set the state accordingly.
-                const latestPost = utils.isEmptyObject(res.data) ? null : res.data;
+    async componentDidMount() {
+        try {
+            const res = await requestsAndURLs.getLatestPostForHome();
 
-                this.setState({
-                    hasNotLoadedLatestPostYet: false,
-                    latestPost: latestPost,
-                    errorWhileFetchingLatestPost: false
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    hasNotLoadedLatestPostYet: false,
-                    latestPost: null,
-                    errorWhileFetchingLatestPost: true
-                });
+            // If the response is empty, we assume that there is no latest post yet and in that case we need
+            // to set the state accordingly.
+            const latestPost = utils.isEmptyObject(res.data) ? null : res.data;
+
+            this.setState({
+                hasNotLoadedLatestPostYet: false,
+                latestPost: latestPost,
+                errorWhileFetchingLatestPost: false
             });
+        } catch (error) {
+            this.setState({
+                hasNotLoadedLatestPostYet: false,
+                latestPost: null,
+                errorWhileFetchingLatestPost: true
+            });
+        }
     }
 
     renderLatestPostIfExisting() {

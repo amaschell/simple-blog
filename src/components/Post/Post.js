@@ -18,30 +18,30 @@ class Post extends React.Component {
         };
     }
 
-    componentDidMount() {
-        return requestsAndURLs.getPost(this.props.match.params.slug)
-            .then(res => {
-                this.setState({
-                    hasNotLoadedPostYet: false,
-                    post: res.data,
-                    hasGeneralServerError: false
-                });
-            })
-            .catch(error => {
-                let is404Error;
+    async componentDidMount() {
+        try {
+            const res = await requestsAndURLs.getPost(this.props.match.params.slug);
 
-                try {
-                    is404Error = error.response.status === 404;
-                } catch (e) {
-                    is404Error = false;
-                }
-
-                this.setState({
-                    hasNotLoadedPostYet: false,
-                    post: null,
-                    hasGeneralServerError: !is404Error
-                });
+            this.setState({
+                hasNotLoadedPostYet: false,
+                post: res.data,
+                hasGeneralServerError: false
             });
+        } catch (error) {
+            let is404Error;
+
+            try {
+                is404Error = error.response.status === 404;
+            } catch (e) {
+                is404Error = false;
+            }
+
+            this.setState({
+                hasNotLoadedPostYet: false,
+                post: null,
+                hasGeneralServerError: !is404Error
+            });
+        }
     }
 
     renderPost() {

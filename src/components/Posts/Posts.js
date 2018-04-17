@@ -17,23 +17,22 @@ class Posts extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // Return the promise here, so that the promise can get chained in the tests!
-        return requestsAndURLs.getPosts()
-            .then(res => {
-                this.setState({
-                    hasNotLoadedPostsYet: false,
-                    posts: res.data,
-                    hasError: false
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    hasNotLoadedPostsYet: false,
-                    posts: [],
-                    hasError: true
-                });
+    async componentDidMount() {
+        try {
+            const res = await requestsAndURLs.getPosts();
+
+            this.setState({
+                hasNotLoadedPostsYet: false,
+                posts: res.data,
+                hasError: false
             });
+        } catch (error) {
+            this.setState({
+                hasNotLoadedPostsYet: false,
+                posts: [],
+                hasError: true
+            });
+        }
     }
 
     renderPosts() {

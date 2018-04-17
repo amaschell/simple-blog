@@ -53,22 +53,21 @@ class ContactForm extends React.Component {
         };
     }
 
-    doFormSubmit() {
-        // Return the promise here, so that the promise can get chained in the tests!
-        return requestsAndURLs.postContactForm(this.makeFormDataForRequest())
-            .then(res => {
-                this.setState({
-                    isCurrentlySendingFormDataToServer: false,
-                    messageHasBeenSent: true
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    isCurrentlySendingFormDataToServer: false,
-                    messageHasBeenSent: false,
-                    errorWhenSendingMessage: error.response.data
-                });
+    async doFormSubmit() {
+        try {
+            await requestsAndURLs.postContactForm(this.makeFormDataForRequest());
+
+            this.setState({
+                isCurrentlySendingFormDataToServer: false,
+                messageHasBeenSent: true
             });
+        } catch (error) {
+            this.setState({
+                isCurrentlySendingFormDataToServer: false,
+                messageHasBeenSent: false,
+                errorWhenSendingMessage: error.response.data
+            });
+        }
     }
 
     validateAndTryToSubmitForm() {
@@ -90,16 +89,12 @@ class ContactForm extends React.Component {
                         // gets shown. After that, the actual request is performed. This is done so that the user
                         // receives an immediate loading feedback for his form submit action.
                         this.setState(
-                            {
-                                isCurrentlySendingFormDataToServer: true
-                            },
-
+                            { isCurrentlySendingFormDataToServer: true },
                             resolve(this.doFormSubmit())
                         );
                     } else {
                         reject('Form not valid!');
                     }
-
                 }
             );
         });

@@ -17,23 +17,22 @@ class About extends React.Component {
         };
     }
 
-    componentDidMount() {
-        // Return the promise here, so that the promise can get chained in the tests!
-        return requestsAndURLs.getAbout()
-            .then(res => {
-                this.setState({
-                    hasNotLoadedUsersYet: false,
-                    users: res.data,
-                    hasError: false
-                });
-            })
-            .catch(error => {
-                this.setState({
-                    hasNotLoadedUsersYet: false,
-                    posts: [],
-                    hasError: true
-                });
+    async componentDidMount() {
+        try {
+            const res = await requestsAndURLs.getAbout();
+
+            this.setState({
+                hasNotLoadedUsersYet: false,
+                users: res.data,
+                hasError: false
             });
+        } catch (error) {
+            this.setState({
+                hasNotLoadedUsersYet: false,
+                posts: [],
+                hasError: true
+            });
+        }
     }
 
     renderAuthors() {
