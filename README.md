@@ -49,7 +49,7 @@ npm test
 ### Using a local server for back end requests
 
 There is a minimalistic and simple server for this blog called 
-[Simple Server](https://github.com/amaschell/simple-server) that can be started locally on your machine. 
+[simple-server](https://github.com/amaschell/simple-server) that can be started locally on your machine. 
 
 All requests made by the 
 blog to the server, including the default base URL `http://localhost:3001`, are configured under 
