@@ -65,7 +65,7 @@ class ContactForm extends React.Component {
             this.setState({
                 isCurrentlySendingFormDataToServer: false,
                 messageHasBeenSent: false,
-                errorWhenSendingMessage: error.response.data
+                errorWhenSendingMessage: error.response.data.message
             });
         }
     }
